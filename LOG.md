@@ -137,3 +137,6 @@ Append one entry per step: date, what was done, result, decisions and why.
 - Framing agreed: the graph comparison stays the subject and exposure bias is the test. Motivation: short-video feeds are spreading into e-commerce and social platforms; in a feed the recommender decides almost everything the user sees, so exposure bias is strongest there. Scope: one platform, feed-style recommendation only, no claim of generalising to e-commerce. Practical takeaway: evaluate a graph recommender on unbiased data and against most-popular before deploying it in a feed.
 - Considered and rejected: dropping the graph focus for a pure biased-vs-unbiased study (the brief grades methods: parameters, ablation, strengths and weaknesses). KuaiRand-Pure is not a subset of KuaiRec: separate collections with unlinked ids and different unbiased mechanisms.
 - Notebook 00: motivation paragraph in section 1, why short video and scope in section 2, objective 6 (practical takeaway). CLAUDE.md: story added to Goal; Introduction and Conclusion contents updated. The Introduction needs 1-2 real sources for short-video feeds in shopping apps.
+
+## 2026-10-01 (repository)
+- First commit pushed to the team repository on GitHub (graph-recsys-exposure-bias, branch main). `data/` contents and the course brief PDF are ignored.
