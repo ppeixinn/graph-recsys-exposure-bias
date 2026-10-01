@@ -1,0 +1,15 @@
+# data and models
+data/*
+!data/README.md
+*.pt
+*.pth
+*.tar.gz
+*.zip
+
+# python
+__pycache__/
+.ipynb_checkpoints/
+*.pyc
+
+# course material
+project1 technical review.pdf

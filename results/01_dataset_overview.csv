@@ -1,0 +1,15 @@
+,KuaiRand-Pure,KuaiRec
+Platform,Kuaishou short videos,Kuaishou short videos
+Collected,9 Apr - 8 May 2022,5 Jul - 5 Sep 2020
+Feedback,"Click, like, long view, ... per exposure",Watch ratio per play
+Positive,is_click == 1,watch_ratio >= 2 (any play)
+Biased logs,"1,436,609 recommender-chosen exposures","12,530,806 plays (big matrix)"
+Unbiased part,"1,186,059 randomly exposed videos","4,676,570 plays (small matrix, 99.6% filled)"
+How the unbiased part removes bias,Test videos chosen at random,Every user saw every block video
+Raw users / videos,"27,285 / 7,583","7,176 / 10,728"
+Users / items in the graph,"25,689 / 7,218","7,173 / 10,611"
+Train / val / test positives,"466,490 / 54,223 / 131,436","609,375 / 67,773 / 169,264"
+Training density,0.25%,0.80%
+Training positives per user,18.2,85.0
+Unbiased test,"194,539 positives, 21,515 users","216,727 positives, 1,408 users"
+Unbiased ranking over,all items,"3,326 block videos"

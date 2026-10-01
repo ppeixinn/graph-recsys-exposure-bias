@@ -1,0 +1,183 @@
+{
+ "seed": 0,
+ "positive": {
+  "kuairand": "is_click == 1",
+  "kuairec": "watch_ratio >= 2 (any play)"
+ },
+ "datasets": {
+  "kuairand": {
+   "name": "KuaiRand-Pure (is_click)",
+   "users": 25689,
+   "items": 7218,
+   "train": 466490,
+   "val": 54223,
+   "test": 131436,
+   "test_unbiased": 194539,
+   "density": 0.002515812449404255,
+   "cold_users": 0,
+   "cold_items": 122
+  },
+  "kuairec": {
+   "name": "KuaiRec (watch_ratio >= 2)",
+   "users": 7173,
+   "items": 10611,
+   "train": 609375,
+   "val": 67773,
+   "test": 169264,
+   "test_unbiased": 216727,
+   "density": 0.008006219408605157,
+   "cold_users": 0,
+   "cold_items": 413
+  }
+ },
+ "degrees": {
+  "KuaiRand-Pure": {
+   "user": {
+    "min": 1,
+    "median": 13.0,
+    "mean": 18.159134259799913,
+    "max": 169,
+    "share_below_10": 0.3826929814317412,
+    "gini": 0.46315229924119994,
+    "top1pct_share": 0.04855838281635191
+   },
+   "item": {
+    "min": 0,
+    "median": 15.0,
+    "mean": 64.62870601274591,
+    "max": 4251,
+    "share_below_10": 0.4109171515655306,
+    "gini": 0.7588281007058123,
+    "top1pct_share": 0.2048125361744089
+   }
+  },
+  "KuaiRec": {
+   "user": {
+    "min": 1,
+    "median": 63.0,
+    "mean": 84.95399414470933,
+    "max": 722,
+    "share_below_10": 0.033458803847762446,
+    "gini": 0.4418226889868345,
+    "top1pct_share": 0.04766687179487179
+   },
+   "item": {
+    "min": 0,
+    "median": 10.0,
+    "mean": 57.428611817924796,
+    "max": 1859,
+    "share_below_10": 0.49995287908773917,
+    "gini": 0.7478306157954131,
+    "top1pct_share": 0.13502194871794873
+   }
+  }
+ },
+ "kuairand_signal_rates": {
+  "standard": {
+   "is_click": 0.45965325290319076,
+   "is_like": 0.018478235901348245,
+   "long_view": 0.331839769902597,
+   "exposures": 1436609.0
+  },
+  "random": {
+   "is_click": 0.1761581843736273,
+   "is_like": 0.0047982435949645,
+   "long_view": 0.08496120344772055,
+   "exposures": 1186059.0
+  }
+ },
+ "kuairand_by_signal": {
+  "is_click": {
+   "name": "KuaiRand-Pure (is_click)",
+   "users": 25689,
+   "items": 7218,
+   "train": 466490,
+   "val": 54223,
+   "test": 131436,
+   "test_unbiased": 194539,
+   "density": 0.002515812449404255,
+   "cold_users": 0,
+   "cold_items": 122
+  },
+  "is_like": {
+   "name": "KuaiRand-Pure (is_like)",
+   "users": 3433,
+   "items": 3518,
+   "train": 15248,
+   "val": 2112,
+   "test": 5526,
+   "test_unbiased": 2349,
+   "density": 0.001262534471711958,
+   "cold_users": 0,
+   "cold_items": 408
+  },
+  "long_view": {
+   "name": "KuaiRand-Pure (long_view)",
+   "users": 24916,
+   "items": 6863,
+   "train": 336808,
+   "val": 40451,
+   "test": 95922,
+   "test_unbiased": 90782,
+   "density": 0.0019696546124250394,
+   "cold_users": 0,
+   "cold_items": 159
+  }
+ },
+ "kuairand_duplicates": {
+  "standard": {
+   "exposures": 1436609,
+   "repeated_exposures": 61609,
+   "clicks": 660342,
+   "unique_click_pairs": 653051,
+   "removed": 7291,
+   "removed_share": 0.011041248322838771
+  },
+  "random": {
+   "exposures": 1186059,
+   "repeated_exposures": 53,
+   "clicks": 208934,
+   "unique_click_pairs": 208934,
+   "removed": 0,
+   "removed_share": 0.0
+  }
+ },
+ "split_compare": {
+  "kuairand|test": {
+   "users": 25689,
+   "positives": 131436,
+   "mean_item_degree": 530.3062783407894,
+   "share_in_top10pct_items": 0.6299948263793785,
+   "best_possible_recall": 0.9982812860537603,
+   "most_popular_recall": 0.11407041573353831,
+   "most_popular_ndcg": 0.0761023366106417
+  },
+  "kuairand|test_unbiased": {
+   "users": 21515,
+   "positives": 194539,
+   "mean_item_degree": 88.77962773531272,
+   "share_in_top10pct_items": 0.14443376392394328,
+   "best_possible_recall": 0.9573300588002901,
+   "most_popular_recall": 0.006742366503117925,
+   "most_popular_ndcg": 0.00462495459999328
+  },
+  "kuairec|test": {
+   "users": 7173,
+   "positives": 169264,
+   "mean_item_degree": 282.03560709896965,
+   "share_in_top10pct_items": 0.5582403818886473,
+   "best_possible_recall": 0.8154207210456699,
+   "most_popular_recall": 0.07361309789911774,
+   "most_popular_ndcg": 0.08770347930741657
+  },
+  "kuairec|test_unbiased": {
+   "users": 1408,
+   "positives": 216727,
+   "mean_item_degree": 297.04340945059914,
+   "share_in_top10pct_items": 0.5505174712887642,
+   "best_possible_recall": 0.3179258778525664,
+   "most_popular_recall": 0.15025485493231225,
+   "most_popular_ndcg": 0.5411714764001544
+  }
+ }
+}
