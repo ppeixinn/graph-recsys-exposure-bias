@@ -58,6 +58,12 @@ def _build(name, users, items, seed, test_frac):
     return dict(name=name, n_users=len(uid), n_items=len(iid), train=train, val=val, test=test), uid, iid
 
 
+def _shown(log, uid, iid):
+    """Videos each known user was shown in an unbiased log, clicked or not: {user: items}, known items only."""
+    log = log[log.user_id.isin(uid) & log.video_id.isin(iid)]
+    return {u: np.array(v) for u, v in _group([uid[u] for u in log.user_id], [iid[i] for i in log.video_id]).items()}
+
+
 def _unbiased(pos, uid, iid, seen):
     """Unbiased test targets: positives of known users on known items, without pairs in `seen` (biased positives)."""
     pos = pos[pos.user_id.isin(uid) & pos.video_id.isin(iid)]

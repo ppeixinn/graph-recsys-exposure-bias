@@ -4,7 +4,7 @@ import numpy as np
 import torch
 
 from data import to_pairs
-from inference import evaluate
+from inference import evaluate, evaluate_exposed
 from models import MF, LightGCN
 
 
@@ -78,4 +78,6 @@ def fit(cfg, ds, seed=0, verbose=False, eval_every=5, patience=4):
                train_time=train_time, history=hist)
     if "test_unbiased" in ds:  # same model, scored on positives the platform recommender did not choose
         out["test_unbiased"] = evaluate(model, ds, "test_unbiased", mask_splits=("train", "val", "test"))[0]
+    if "unbiased_exposed" in ds:  # same targets, ranked only among the videos each user was shown
+        out["test_exposed"] = evaluate_exposed(model, ds)[0]
     return out, rec, rec_items, model

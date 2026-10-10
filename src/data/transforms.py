@@ -37,8 +37,9 @@ def k_core(ds, k):
     train = {u: np.array(v) for u, v in _group([uid[u] for u in pairs[:, 0]], [iid[i] for i in pairs[:, 1]]).items()}
     out = dict(name=f"{ds['name']} [{k}-core]", n_users=len(uid), n_items=len(iid),
                train=train, val=remap(ds["val"]), test=remap(ds["test"]))
-    if "test_unbiased" in ds:
-        out["test_unbiased"] = remap(ds["test_unbiased"])
+    for s in ("test_unbiased", "unbiased_exposed"):
+        if s in ds:
+            out[s] = remap(ds[s])
     if "unbiased_items" in ds:
         out["unbiased_items"] = np.array([iid[i] for i in ds["unbiased_items"] if i in iid])
     return out
