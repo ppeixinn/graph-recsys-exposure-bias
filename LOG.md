@@ -162,3 +162,13 @@ Append one entry per step: date, what was done, result, decisions and why.
 - Notebook 02: positive definition, repeated interactions, a new filtering table (users dropped for having one positive: 902 of 26,591 on KuaiRand-Pure, 2 of 7,175 on KuaiRec; unbiased positives kept: 194,539 of 208,934 and 216,727 of 217,229), split sizes, seed check, split checks, degree distributions, side-by-side table, biased vs. unbiased test popularity and most-popular preview. Outputs renamed `01_` -> `02_` (`02_data_stats.json`, `02_dataset_overview.csv`, `02_degree_distributions.png`); the content is identical to the old `01_` files apart from the new `filtering` entry.
 - `src/data/store.py`: `save_processed(ds, name, seed)` and `load_processed(name, seed)`. Notebook 02 writes `data/processed/{kuairand,kuairec}_seed{0,1,2}.npz` (2.1-2.5 MB each, not in git) and checks that each file reads back identical to `data.load`, including the order of users and items. Reading takes under a second.
 - Both notebooks rerun with the project `.venv` kernel (kernelspec changed from the conda kernel to `python3`). Notebook 00's map and CLAUDE.md updated.
+
+## 2026-10-10 (notebook 03: BPR-MF parameter study)
+- Completed the BPR-MF parameter study on KuaiRand-Pure and KuaiRec: 8 configurations per dataset, seed 0, max 100 epochs, validation every 5 epochs and patience 4. The grid varied embedding dimension (16/32/64/128), learning rate (3e-4/1e-3/3e-3) and L2 (1e-5/1e-4/1e-3).
+- Selection used validation Recall@20 only; neither standard-test nor less-biased-test metrics were used for selection.
+  - KuaiRand-Pure selected `dim=64`, `lr=0.001`, `reg=0.001` (`reg_1e-3`): validation Recall@20 0.1673, best epoch 100.
+  - KuaiRec selected `dim=64`, `lr=0.0003`, `reg=0.0001` (`lr_3e-4`): validation Recall@20 0.1084, best epoch 75.
+- Final seed-0 evaluation of the selected settings:
+  - KuaiRand-Pure: standard Recall@20 0.1693 and NDCG@20 0.1102; less-biased Recall@20 0.0060 and NDCG@20 0.0041.
+  - KuaiRec: standard Recall@20 0.1066 and NDCG@20 0.1145; less-biased Recall@20 0.1731 and NDCG@20 0.5631.
+- Saved `results/03_mf_parameters.json` and `results/03_mf_validation.png`. The validation figure highlights `reg_1e-3` for KuaiRand-Pure and `lr_3e-4` for KuaiRec.
