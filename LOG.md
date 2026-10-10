@@ -140,3 +140,18 @@ Append one entry per step: date, what was done, result, decisions and why.
 
 ## 2026-10-01 (repository)
 - First commit pushed to the team repository on GitHub (graph-recsys-exposure-bias, branch main). `data/` contents and the course brief PDF are ignored.
+
+## 2026-10-10 (src/ reorganised into packages)
+- `src/` is now one package per area so each member adds files in their own folder: `data/`, `inference/` (owner 1), `models/`, `training/`, `algorithms/`, `ablations/`, `experiments/`, `analysis/`, plus shared `utils/`. Table of folders and owners in CLAUDE.md.
+- Member 1 code split up: `data.py` -> `data/loaders.py`, `splits.py`, `transforms.py`, `stats.py`; `evaluate` moved from `train.py` to `inference/evaluate.py`; `to_pairs` now in `data/splits.py`. Code unchanged otherwise. Data paths come from `utils/paths.py`.
+- Members 2-4 code moved without edits: `models.py` -> `models/core.py`; `train.py` -> `training/train.py`, whose only changes are dropping `evaluate` and `to_pairs` and importing them from `inference` and `data`. `algorithms/`, `ablations/`, `experiments/`, `analysis/` are empty packages for their owners.
+- `utils/io.py`: `save_json`, `load_json` and `savefig` (saves at 200 dpi without matplotlib's web address).
+- Notebooks: `import train` -> `import training, inference`; `train.fit` -> `training.fit`, `train.evaluate` -> `inference.evaluate`; "Inputs" lines point to the new folders. Outputs not rerun.
+- Check: a short MovieLens run (stats, sparsify, 5-core, 4 epochs of MF and LightGCN with edge dropout) gives the same metrics before and after; the only difference is MF's last loss value in the 8th decimal, which also varies between two runs of the same code (multithreaded float sums). The import cell of every notebook runs.
+
+## 2026-10-10 (MovieLens-100K and the smoke test dropped)
+- **Decision (user):** remove MovieLens-100K everywhere so the team works only with the two Kuaishou datasets, and drop the smoke-test notebook; each member checks the pipeline step by step in their own notebook.
+- `src/data/loaders.py`: `load_movielens` and the `"ml100k"` key removed; `data.load` takes `"kuairand"` or `"kuairec"`.
+- `notebooks/02_smoke_test.ipynb` deleted (it was a stub). Notebook numbers are kept, so there is no 02. Notebook 00's map no longer lists it.
+- Notebook 08: pilot removed. `DATASETS` is KuaiRand-Pure and KuaiRec, output files have no `_pilot` tag, all outputs cleared, status cell says not run and that `CONFIGS` needs the settings from 03 and 04. `results/08_density_sweep_pilot*` (4 files) deleted.
+- README.md, data/README.md (MovieLens download section) and CLAUDE.md updated; MovieLens-100K is listed under rejected datasets. The saved output of notebook 01's last cell still lists the deleted pilot files until 01 is rerun.

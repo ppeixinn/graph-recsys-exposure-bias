@@ -15,7 +15,7 @@ Compare BPR-MF and LightGCN on user-item bipartite graphs and test whether Light
 - **Research question:** most test sets contain only items that the platform's own recommender chose to show, so they reward models that recommend what was already popular. Both datasets also contain feedback the recommender did not select. Does LightGCN still beat BPR-MF on that feedback, and by how much compared with a most-popular baseline?
 - **Methods (2):** BPR-MF (no graph) and LightGCN (He et al., SIGIR 2020). LightGCN with 0 layers is BPR-MF, so the graph is the only difference.
 - **Baseline (required):** most-popular (rank items by training degree). It anchors both tests: it is strong on the biased test and weak on KuaiRand's unbiased test.
-- **Datasets (2, both Kuaishou short videos):** KuaiRand-Pure (unbiased test = randomly exposed videos) and KuaiRec (unbiased test = a fully observed block of users and videos). MovieLens-100K is kept only for smoke tests and debugging; it is not a reported dataset.
+- **Datasets (2, both Kuaishou short videos):** KuaiRand-Pure (unbiased test = randomly exposed videos) and KuaiRec (unbiased test = a fully observed block of users and videos).
 - **Metrics:** Recall@20 and NDCG@20 on the biased test and on the unbiased test, margin over most-popular, item coverage, popularity of recommendations, training time.
 - **Secondary analyses:** popularity and user-degree breakdown on both tests (07), density sweep (08), ablation (05), layer study (04).
 
@@ -26,7 +26,7 @@ Compare BPR-MF and LightGCN on user-item bipartite graphs and test whether Light
 
 Submission rules (from the project brief):
 - One submission per group on NTULearn (Assignments -> project 1). Resubmitting is allowed. Submitter: the group coordinator (to be confirmed, see Open decisions).
-- **No URLs anywhere in the zip.** The repository `README.md`, `requirements.txt` and `data/README.md` contain links (arXiv, PyTorch wheel index, GroupLens, Zenodo, GitHub). The zip gets its own link-free `README.md` that names the papers and datasets in plain text and gives the install command without a URL; `requirements.txt` in the zip has its URL comment removed. Before zipping, search every file in the package for `http`, including binary files (`grep -a`), and confirm there are no hits.
+- **No URLs anywhere in the zip.** The repository `README.md`, `requirements.txt` and `data/README.md` contain links (arXiv, PyTorch wheel index, Zenodo, GitHub). The zip gets its own link-free `README.md` that names the papers and datasets in plain text and gives the install command without a URL; `requirements.txt` in the zip has its URL comment removed. Before zipping, search every file in the package for `http`, including binary files (`grep -a`), and confirm there are no hits.
 - The zip README must not point to `data/README.md`, because `data/` is excluded. It states in plain text which datasets to obtain and the file names expected under `data/`.
 - Contribution issues had to be reported to the instructor 4 weeks before the deadline (20 Sep 2026). That date has passed, so the team resolves any contribution problem itself.
 
@@ -85,18 +85,31 @@ data/              raw datasets, NOT committed and NOT in the zip
 ```
 
 ### src/
-- `data.py` (owner 1): `load(name, seed)` for `"kuairand"`, `"kuairec"` and `"ml100k"`. Returns `dict(name, n_users, n_items, train, val, test, test_unbiased, unbiased_items)`; each split is `{user: np.array(items)}`. `test_unbiased` exists for the two Kuaishou datasets; `unbiased_items` (the block videos) only for KuaiRec. Users with fewer than 2 positives are dropped and ids are remapped. Raw positives are cached per process, so loading several seeds is fast after the first call (KuaiRec takes about 25 s the first time). Also `sparsify(ds, keep_frac, seed)`, `k_core(ds, k)`, `degrees(ds)`, `stats(ds)`.
-- `models.py` (owner 3 for LightGCN, 2 for MF): `MF` and `LightGCN` (layers, `combine` = mean or last, `norm` = sym, left or none, edge dropout). LightGCN propagates with a CSR adjacency and `SpMM`, an autograd function whose backward uses a CSR copy of the transpose (15 times faster on CPU than the default; gradients checked).
-- `train.py` (owner 2 for `fit`, 1 for `evaluate`): BPR training loop with early stopping on validation Recall@20. `fit` scores the best model on `test` and, when the dataset has one, on `test_unbiased`. `evaluate` returns Recall, NDCG, coverage, `popularity` (mean training degree of recommended items) and per-user recall; on KuaiRec's `test_unbiased` it ranks only among `unbiased_items`.
-- Planned: most-popular baseline (owner 4; it can be a model whose `embeddings()` returns a column of ones for users and the training degrees for items, see notebook 01 section B6), `experiments.py` (multi-seed runner saving JSON, owner 4), `analysis.py` (degree and popularity groups, figures, owner 3).
+One package per area so each member adds files in their own folder. Notebooks put `src/` on `sys.path` and use `import data, models, training, inference`; packages import each other the same way (`from data import to_pairs`). Each package's `__init__.py` re-exports its public names, so add a new module and export it there.
 
-**Status (2026-10-01): `data.py`, `evaluate` and the LightGCN speed fix are checked. `fit` runs on all three datasets but nothing is tuned. Notebooks 00 and 01 are complete; notebook 08 has its code and a MovieLens pilot only; notebooks 02-07 are stubs.**
+| Folder | Owner | Contents |
+|---|---|---|
+| `data/` | 1 | `loaders.py` (paths, `load`), `splits.py` (split rules, unbiased targets, `to_pairs`), `transforms.py` (`sparsify`, `k_core`), `stats.py` (`degrees`, `stats`) |
+| `inference/` | 1 | `evaluate.py` (`evaluate`) |
+| `models/` | 2 (MF), 3 (LightGCN), 4 (most-popular) | `core.py`: `MF`, `LightGCN`, `build_norm_adj`, `SpMM` (moved unchanged from `models.py`). New models go in their own module. |
+| `training/` | 2 | `train.py`: `fit`, `make_model` (moved from `train.py`; `evaluate` now imported from `inference`) |
+| `algorithms/` | 2, 3 | empty: losses, negative samplers, graph operations, the improvement fix |
+| `ablations/` | 4 | empty: ablation configs, one change at a time |
+| `experiments/` | 4 | empty: multi-seed runner saving JSON |
+| `analysis/` | 3 | empty: degree and popularity groups, recall breakdowns, figures |
+| `utils/` | shared | `paths.py` (`ROOT`, `DATA_DIR`, `RESULTS_DIR`), `io.py` (`save_json`, `load_json`, `savefig` with the no-URL metadata) |
+
+- `data/` (owner 1): `load(name, seed)` for `"kuairand"` and `"kuairec"`. Returns `dict(name, n_users, n_items, train, val, test, test_unbiased, unbiased_items)`; each split is `{user: np.array(items)}`. Both have `test_unbiased`; `unbiased_items` (the block videos) only for KuaiRec. Users with fewer than 2 positives are dropped and ids are remapped. Raw positives are cached per process, so loading several seeds is fast after the first call (KuaiRec takes about 25 s the first time). Also `sparsify(ds, keep_frac, seed)`, `k_core(ds, k)`, `degrees(ds)`, `stats(ds)`.
+- `models/core.py` (owner 3 for LightGCN, 2 for MF): `MF` and `LightGCN` (layers, `combine` = mean or last, `norm` = sym, left or none, edge dropout). LightGCN propagates with a CSR adjacency and `SpMM`, an autograd function whose backward uses a CSR copy of the transpose (15 times faster on CPU than the default; gradients checked).
+- `training/train.py` (owner 2) and `inference/evaluate.py` (owner 1): BPR training loop with early stopping on validation Recall@20. `fit` scores the best model on `test` and, when the dataset has one, on `test_unbiased`. `evaluate` returns Recall, NDCG, coverage, `popularity` (mean training degree of recommended items) and per-user recall; on KuaiRec's `test_unbiased` it ranks only among `unbiased_items`.
+- Planned: most-popular baseline (owner 4; it can be a model whose `embeddings()` returns a column of ones for users and the training degrees for items, see notebook 01 section B6) in `models/`, multi-seed runner in `experiments/` (owner 4), ablation configs in `ablations/` (owner 4), degree and popularity groups and figures in `analysis/` (owner 3).
+
+**Status (2026-10-01): `data.py`, `evaluate` and the LightGCN speed fix are checked. `fit` runs on both datasets but nothing is tuned. Notebooks 00 and 01 are complete; notebook 08 has its code but has not been run; notebooks 03-07 are stubs. There is no notebook 02: the smoke test was dropped on 2026-10-10; members check the pipeline step by step in their own notebooks.**
 
 ### notebooks/
 Numbered, in order, one per step. Each notebook imports from `src/`, states its purpose in the first cell, and keeps its outputs saved.
 - `00_introduction.ipynb`: text only: theme, exposure bias, why BPR-MF vs. LightGCN, objectives (owner 1).
 - `01_data_exploration.ipynb`: Part A raw data of KuaiRand-Pure and KuaiRec in tables; Part B split sizes with the unbiased tests, split checks, degree distributions, positive definitions, popularity of biased vs. unbiased test positives, most-popular preview (owner 1).
-- `02_smoke_test.ipynb`: both models train on MovieLens-100K; one epoch timed on each Kuaishou dataset.
 - `03_mf_parameters.ipynb`, `04_lightgcn_parameters.ipynb`: parameter studies on validation.
 - `05_ablation.ipynb`: component ablations.
 - `06_main_comparison.ipynb`: most-popular, MF, LightGCN on both tests of both datasets, mean ± std over seeds (headline).
@@ -112,9 +125,8 @@ Numbered, in order, one per step. Each notebook imports from `src/`, states its 
 - **Splits and positives:**
   - KuaiRand-Pure: positive is `is_click == 1`. `train`/`val`/`test` are a per-user random 80/20 split of the pooled standard (recommender-exposed) logs, then 10% of train for validation. `test_unbiased` is the clicks in the randomly exposed log for the same users and items, without pairs that are clicked in the standard logs.
   - KuaiRec: positive is a (user, video) pair with at least one play of `watch_ratio >= 2`. Same split of the big matrix. `test_unbiased` is the positives in the small matrix (no pair is in both matrices).
-  - MovieLens-100K (smoke tests only): rating >= 4, same split, no unbiased test.
   - State this in the report and apply it identically everywhere.
-- **Data:** never commit or zip anything under `data/`. Download steps go in `data/README.md`. Downloaded: `KuaiRand-Pure`, `KuaiRec.zip` (read directly from the zip, no need to extract), `ml-100k`.
+- **Data:** never commit or zip anything under `data/`. Download steps go in `data/README.md`. Downloaded: `KuaiRand-Pure`, `KuaiRec.zip` (read directly from the zip, no need to extract).
 - **Environment:** Python 3.13, PyTorch (CPU), numpy, scipy, pandas, matplotlib, scikit-learn, jupyter. No GPU, so keep experiments small enough for 8 CPU cores.
 - **Code style:** match the existing files: short docstrings, no unneeded comments, small functions.
 - **Sources:** cite the LightGCN paper (arXiv 2002.02126), the KuaiRand paper (arXiv 2208.08696), the KuaiRec paper (arXiv 2202.10842) and BPR (Rendle et al., UAI 2009). Do not copy tables or text from other work.
@@ -144,23 +156,22 @@ Goal: test whether LightGCN's advantage, on each test, depends on interaction de
 - Apply the same procedure to both datasets.
 - Record users, items, edges and density at every level, and note the cold users that sparsifying creates.
 - A k-core filter (5-core, 10-core) is a separate, secondary variant because it also changes the item set; keep it apart from random subsampling.
-- `sparsify(ds, keep_frac, seed)` and `k_core(ds, k)` in `src/data.py`; notebook `08_density_sweep.ipynb`.
+- `sparsify(ds, keep_frac, seed)` and `k_core(ds, k)` in `src/data/transforms.py`; notebook `08_density_sweep.ipynb`.
 
 ## Data status (checked 2026-10-01, seed 0, numbers in `results/01_data_stats.json`)
 - **KuaiRand-Pure** (`is_click`): 25,689 users, 7,218 items, 466,490 train / 54,223 val / 131,436 test, density 0.25%. Unbiased test: 194,539 clicks of 21,515 users. 63% of biased test positives are on the 10% most popular items, 14% of unbiased ones. Most-popular baseline: Recall@20 0.114 on the biased test, 0.007 on the unbiased test.
 - **KuaiRec** (`watch_ratio >= 2`): 7,173 users, 10,611 items, 609,375 train / 67,773 val / 169,264 test, density 0.80%. Unbiased test: 216,727 positives of 1,408 users over 3,326 block videos. The block videos are popular (31% are in the top 10% by plays), so 55% of unbiased positives are on the top 10% items, like the biased test (56%). Most-popular: Recall@20 0.074 / NDCG@20 0.088 on the biased test, 0.150 / 0.541 on the unbiased test (best possible Recall@20 there is 0.32).
 - The two unbiased tests remove different biases: KuaiRand's removes the recommender's choice of which videos are shown; KuaiRec's removes missing feedback on a fixed, popular block.
 - KuaiRec's positive definition favours short videos: 11% of plays of videos under 10 s reach watch ratio 2, against 0.2% for videos over 60 s.
-- MovieLens-100K (smoke tests only): 942 users, 1,447 items, 39,857 train / 4,439 val / 11,079 test, density 2.9%.
 - The KuaiRand archive's MD5 differs from the one published in its repo, but it extracts cleanly and the random log has the documented 1,186,059 rows.
-- Rejected: KuaiRand-1K (only 43,028 random-exposure interactions, about 4.4M videos, 4.3 GB), Gowalla (too large for CPU, no unbiased test), MicroLens (no unbiased test, very sparse).
+- Rejected: KuaiRand-1K (only 43,028 random-exposure interactions, about 4.4M videos, 4.3 GB), Gowalla (too large for CPU, no unbiased test), MicroLens (no unbiased test, very sparse), MovieLens-100K (no unbiased test; dropped 2026-10-10).
 
 ## Team roles (everyone touches code, analysis and report)
 | Member | Code | Experiment and analysis | Report sections |
 |---|---|---|---|
 | **1** | Data loaders, splits, unbiased test sets, evaluation, `sparsify` | Dataset statistics; density sweep | Introduction (with related work), datasets, evaluation protocol, density sweep |
 | **2** | BPR-MF and training loop | MF parameters (dim, lr, L2) | BPR-MF method, MF parameter discussion, conclusion |
-| **3** | LightGCN, `analysis.py` | LightGCN parameters (layers 0–4, dim); popularity and user-degree breakdown on both tests; improvement fix | LightGCN method, LightGCN parameter discussion, key factors, success and failure cases, possible improvements |
+| **3** | LightGCN, `analysis/` | LightGCN parameters (layers 0–4, dim); popularity and user-degree breakdown on both tests; improvement fix | LightGCN method, LightGCN parameter discussion, key factors, success and failure cases, possible improvements |
 | **4** | Experiment runner, ablation switches, most-popular baseline | Main comparison on both tests (headline); ablations | Abstract, most-popular baseline, main comparison, ablation, strengths and weaknesses; packaging, contribution PDF, code zip |
 
 Code review pairs: 1 with 2, and 3 with 4. Everyone proofreads the whole report once.
@@ -172,21 +183,19 @@ The owner creates the notebook, writes the code cells, runs them, saves outputs,
 |---|---|---|---|
 | `00_introduction` | **1** | Text only: theme, exposure bias, method rationale, objectives, notebook map. Source for the Introduction. (done) | none |
 | `01_data_exploration` | **1** | Part A: raw data of both datasets in tables. Part B: split sizes with the unbiased tests, split checks, degree distributions, positive definitions, repeated interactions, popularity of biased vs. unbiased test positives, most-popular preview. (done) | none |
-| `02_smoke_test` | **2** | Train BPR-MF and LightGCN briefly on MovieLens-100K to confirm the loop, loss and evaluation work; report loss curves and one Recall@20 per model. Time one epoch of each model on KuaiRand-Pure and KuaiRec, and check that `fit` returns `test_unbiased`. Gate for the other notebooks. | 3 adds the LightGCN cell |
 | `03_mf_parameters` | **2** | BPR-MF study: embedding dim (16/32/64/128), learning rate, L2, on both datasets, selected on validation Recall@20. Report the unbiased test of the selected setting only. | 1's loaders and evaluation |
 | `04_lightgcn_parameters` | **3** | LightGCN study: layers 0–4 (over-smoothing curve on both tests), embedding dim, learning rate, L2. Layer 0 is the MF-equivalent control. | 1's loaders, 2's training loop |
 | `05_ablation` | **4** | One change at a time: mean vs. last-layer combination, symmetric vs. no normalization, edge dropout on/off. Table of deltas on both datasets and both tests. | 3's LightGCN switches |
 | `06_main_comparison` | **4** | Headline: most-popular, BPR-MF and LightGCN with the best validation settings from 03 and 04, 3 seeds, both datasets, both tests. Recall@20, NDCG@20, margin over most-popular, coverage, popularity, training time, mean ± std. Headline figure. | 03, 04 results |
 | `07_failure_cases` | **3** | Recall by item-popularity bucket and by user degree group (cold/medium/heavy) on both tests; where LightGCN's gain comes from; example users where it wins and fails. | 1's per-user recall from `evaluate`, 06 models |
-| `08_density_sweep` | **1** | Recall vs. training density (100/50/25/10%) for both models on both datasets, scored on both tests, using `sparsify`. Cold users created. Secondary k-core variant. Pilot on MovieLens done. | 2 and 3 for the models, 03/04 settings |
+| `08_density_sweep` | **1** | Recall vs. training density (100/50/25/10%) for both models on both datasets, scored on both tests, using `sparsify`. Cold users created. Secondary k-core variant. Code ready, not run. | 2 and 3 for the models, 03/04 settings |
 
-Module owners: `data.py` and `evaluate` in `train.py` are 1; `MF` and the training loop are 2; `LightGCN` and `analysis.py` are 3; most-popular baseline and `experiments.py` (multi-seed runner, saves JSON) are 4.
+Module owners: `data/` and `inference/` are 1; `MF` and the training loop are 2; `LightGCN` and `analysis/` are 3; most-popular baseline and `experiments/` (multi-seed runner, saves JSON) and `ablations/` are 4.
 
 Report and packaging: 1 drafts the Introduction (with related work), 2 writes the Conclusion, 4 writes the Abstract and builds the final PDF, the contribution PDF and the code zip (no data, no models, no URLs, no `CLAUDE.md`/`LOG.md`), 1 checks that the zip runs from a clean folder and contains no `http` string.
 
 ## Milestones
 - 2 Oct: shared interface contract agreed (dataset dict with `test_unbiased`, config keys, result JSON with both tests). Compute budget confirmed.
-- 5 Oct: both models run on MovieLens-100K and one epoch on each Kuaishou dataset (gate for everything else).
 - 11 Oct: all experiments finished.
 - 14 Oct: report drafted (at least 4 pages, the five required headings, all six figures in, improvements subsection written).
 - 17 Oct: proofread, build the three files, submit.

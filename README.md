@@ -18,7 +18,7 @@ Both come from Kuaishou, a short-video app. Each has a biased part (videos chose
 | KuaiRand-Pure ([paper](https://arxiv.org/abs/2208.08696)) | 25,689 | 7,218 | 466,490 | 0.25% | `is_click == 1` | 194,539 clicks on randomly exposed videos |
 | KuaiRec ([paper](https://arxiv.org/abs/2202.10842)) | 7,173 | 10,611 | 609,375 | 0.80% | `watch_ratio >= 2` | 216,727 positives in a fully observed block of 1,408 users x 3,326 videos |
 
-MovieLens-100K is used only for quick smoke tests. Download instructions are in [data/README.md](data/README.md).
+Download instructions are in [data/README.md](data/README.md).
 
 ## Evaluation
 - The biased positives of each user are split at random: 80% train / 20% test, then 10% of train held out for validation.
@@ -28,7 +28,16 @@ MovieLens-100K is used only for quick smoke tests. Download instructions are in 
 
 ## Repository layout
 ```
-src/          Python code (data loading, models, training, experiments)
+src/          Python code, one package per area:
+  data/         dataset loaders, splits, density transforms, statistics
+  models/       BPR-MF, LightGCN and baselines
+  training/     BPR training loop with early stopping
+  inference/    full-ranking evaluation (Recall, NDCG, coverage, popularity)
+  algorithms/   losses, negative samplers, graph operations
+  ablations/    LightGCN ablation configurations
+  experiments/  multi-seed runners
+  analysis/     breakdowns by user degree and item popularity, figures
+  utils/        paths and saving results
 notebooks/    one notebook per step, with outputs
 results/      metrics and figures
 data/         datasets (not tracked, see data/README.md)
