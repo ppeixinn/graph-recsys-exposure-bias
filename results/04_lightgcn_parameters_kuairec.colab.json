@@ -1,0 +1,591 @@
+{
+ "kuairec|model=lightgcn,layers=2,dim=64,lr=0.001,reg=1e-05,epochs=100|seed=0": {
+  "dataset": "kuairec",
+  "phase": "grid",
+  "cfg": {
+   "model": "lightgcn",
+   "layers": 2,
+   "dim": 64,
+   "lr": 0.001,
+   "reg": 1e-05,
+   "batch": 2048,
+   "epochs": 100,
+   "threads": 8,
+   "device": "cuda"
+  },
+  "seed": 0,
+  "val_recall": 0.12364929239840156,
+  "best_epoch": 70,
+  "train_time": 317.84736251831055,
+  "test": {
+   "recall": 0.1213022768895507,
+   "ndcg": 0.1314330789618157,
+   "coverage": 0.18207520497596832,
+   "popularity": 670.079548306148
+  },
+  "test_unbiased": {
+   "recall": 0.1714792639097016,
+   "ndcg": 0.5301028731128106,
+   "coverage": 0.21557426337943475,
+   "popularity": 897.8577059659091
+  }
+ },
+ "kuairec|model=lightgcn,layers=2,dim=64,lr=0.001,reg=0.0001,epochs=100|seed=0": {
+  "dataset": "kuairec",
+  "phase": "grid",
+  "cfg": {
+   "model": "lightgcn",
+   "layers": 2,
+   "dim": 64,
+   "lr": 0.001,
+   "reg": 0.0001,
+   "batch": 2048,
+   "epochs": 100,
+   "threads": 8,
+   "device": "cuda"
+  },
+  "seed": 0,
+  "val_recall": 0.12383586381759583,
+  "best_epoch": 70,
+  "train_time": 307.3154835700989,
+  "test": {
+   "recall": 0.12136287539919419,
+   "ndcg": 0.13205177008950553,
+   "coverage": 0.17434737536518707,
+   "popularity": 676.6172312839816
+  },
+  "test_unbiased": {
+   "recall": 0.17222434363329997,
+   "ndcg": 0.5347258753633173,
+   "coverage": 0.21226698737221888,
+   "popularity": 906.4291193181818
+  }
+ },
+ "kuairec|model=lightgcn,layers=2,dim=64,lr=0.005,reg=1e-05,epochs=100|seed=0": {
+  "dataset": "kuairec",
+  "phase": "grid",
+  "cfg": {
+   "model": "lightgcn",
+   "layers": 2,
+   "dim": 64,
+   "lr": 0.005,
+   "reg": 1e-05,
+   "batch": 2048,
+   "epochs": 100,
+   "threads": 8,
+   "device": "cuda"
+  },
+  "seed": 0,
+  "val_recall": 0.11544513117886868,
+  "best_epoch": 15,
+  "train_time": 119.59561657905579,
+  "test": {
+   "recall": 0.11494892389667116,
+   "ndcg": 0.12425491273693837,
+   "coverage": 0.20676656300065968,
+   "popularity": 637.4123239927505
+  },
+  "test_unbiased": {
+   "recall": 0.1691080235036712,
+   "ndcg": 0.5242619266727957,
+   "coverage": 0.24594107035478052,
+   "popularity": 887.3149502840909
+  }
+ },
+ "kuairec|model=lightgcn,layers=2,dim=64,lr=0.005,reg=0.0001,epochs=100|seed=0": {
+  "dataset": "kuairec",
+  "phase": "grid",
+  "cfg": {
+   "model": "lightgcn",
+   "layers": 2,
+   "dim": 64,
+   "lr": 0.005,
+   "reg": 0.0001,
+   "batch": 2048,
+   "epochs": 100,
+   "threads": 8,
+   "device": "cuda"
+  },
+  "seed": 0,
+  "val_recall": 0.1167567111250258,
+  "best_epoch": 15,
+  "train_time": 120.71749258041382,
+  "test": {
+   "recall": 0.11627329774293307,
+   "ndcg": 0.12563047920261947,
+   "coverage": 0.19743662237300913,
+   "popularity": 645.5379687717831
+  },
+  "test_unbiased": {
+   "recall": 0.17000123930176372,
+   "ndcg": 0.5285375903043211,
+   "coverage": 0.240829825616356,
+   "popularity": 896.4690696022727
+  }
+ },
+ "kuairec|model=lightgcn,layers=2,dim=128,lr=0.001,reg=1e-05,epochs=100|seed=0": {
+  "dataset": "kuairec",
+  "phase": "grid",
+  "cfg": {
+   "model": "lightgcn",
+   "layers": 2,
+   "dim": 128,
+   "lr": 0.001,
+   "reg": 1e-05,
+   "batch": 2048,
+   "epochs": 100,
+   "threads": 8,
+   "device": "cuda"
+  },
+  "seed": 0,
+  "val_recall": 0.12571106737575202,
+  "best_epoch": 65,
+  "train_time": 413.51669573783875,
+  "test": {
+   "recall": 0.12356839059181154,
+   "ndcg": 0.13260002908868973,
+   "coverage": 0.25303929884082554,
+   "popularity": 635.1834866861843
+  },
+  "test_unbiased": {
+   "recall": 0.1646869327539601,
+   "ndcg": 0.4889049055652934,
+   "coverage": 0.3782321106434155,
+   "popularity": 800.2822088068182
+  }
+ },
+ "kuairec|model=lightgcn,layers=2,dim=128,lr=0.001,reg=0.0001,epochs=100|seed=0": {
+  "dataset": "kuairec",
+  "phase": "grid",
+  "cfg": {
+   "model": "lightgcn",
+   "layers": 2,
+   "dim": 128,
+   "lr": 0.001,
+   "reg": 0.0001,
+   "batch": 2048,
+   "epochs": 100,
+   "threads": 8,
+   "device": "cuda"
+  },
+  "seed": 0,
+  "val_recall": 0.1264469568498184,
+  "best_epoch": 65,
+  "train_time": 420.2608017921448,
+  "test": {
+   "recall": 0.12454067794120803,
+   "ndcg": 0.1341540623744742,
+   "coverage": 0.23767788144378474,
+   "popularity": 644.601080440541
+  },
+  "test_unbiased": {
+   "recall": 0.16652579011691315,
+   "ndcg": 0.4982424112694103,
+   "coverage": 0.3707155742633794,
+   "popularity": 816.1732954545455
+  }
+ },
+ "kuairec|model=lightgcn,layers=2,dim=128,lr=0.005,reg=1e-05,epochs=100|seed=0": {
+  "dataset": "kuairec",
+  "phase": "grid",
+  "cfg": {
+   "model": "lightgcn",
+   "layers": 2,
+   "dim": 128,
+   "lr": 0.005,
+   "reg": 1e-05,
+   "batch": 2048,
+   "epochs": 100,
+   "threads": 8,
+   "device": "cuda"
+  },
+  "seed": 0,
+  "val_recall": 0.11669865648918555,
+  "best_epoch": 10,
+  "train_time": 149.22731137275696,
+  "test": {
+   "recall": 0.11587042081861952,
+   "ndcg": 0.12406454691967374,
+   "coverage": 0.18952030911318443,
+   "popularity": 634.2683814303639
+  },
+  "test_unbiased": {
+   "recall": 0.1664406275352008,
+   "ndcg": 0.5088352419380336,
+   "coverage": 0.2654840649428743,
+   "popularity": 867.07109375
+  }
+ },
+ "kuairec|model=lightgcn,layers=2,dim=128,lr=0.005,reg=0.0001,epochs=100|seed=0": {
+  "dataset": "kuairec",
+  "phase": "grid",
+  "cfg": {
+   "model": "lightgcn",
+   "layers": 2,
+   "dim": 128,
+   "lr": 0.005,
+   "reg": 0.0001,
+   "batch": 2048,
+   "epochs": 100,
+   "threads": 8,
+   "device": "cuda"
+  },
+  "seed": 0,
+  "val_recall": 0.11753698246180681,
+  "best_epoch": 15,
+  "train_time": 172.92553520202637,
+  "test": {
+   "recall": 0.1166356186482021,
+   "ndcg": 0.12318634719597533,
+   "coverage": 0.2805579116011686,
+   "popularity": 594.078356336261
+  },
+  "test_unbiased": {
+   "recall": 0.15608450619010325,
+   "ndcg": 0.46785139303797474,
+   "coverage": 0.40649428743235116,
+   "popularity": 778.9424715909091
+  }
+ },
+ "kuairec|model=lightgcn,layers=3,dim=64,lr=0.001,reg=1e-05,epochs=100|seed=0": {
+  "dataset": "kuairec",
+  "phase": "grid",
+  "cfg": {
+   "model": "lightgcn",
+   "layers": 3,
+   "dim": 64,
+   "lr": 0.001,
+   "reg": 1e-05,
+   "batch": 2048,
+   "epochs": 100,
+   "threads": 8,
+   "device": "cuda"
+  },
+  "seed": 0,
+  "val_recall": 0.12403121616009706,
+  "best_epoch": 95,
+  "train_time": 439.8758134841919,
+  "test": {
+   "recall": 0.12188523428431358,
+   "ndcg": 0.13180296109724154,
+   "coverage": 0.17717463010083875,
+   "popularity": 668.0111877875366
+  },
+  "test_unbiased": {
+   "recall": 0.1692757413599759,
+   "ndcg": 0.5180801392573607,
+   "coverage": 0.22940469031870114,
+   "popularity": 866.0349786931819
+  }
+ },
+ "kuairec|model=lightgcn,layers=3,dim=64,lr=0.001,reg=0.0001,epochs=100|seed=0": {
+  "dataset": "kuairec",
+  "phase": "grid",
+  "cfg": {
+   "model": "lightgcn",
+   "layers": 3,
+   "dim": 64,
+   "lr": 0.001,
+   "reg": 0.0001,
+   "batch": 2048,
+   "epochs": 100,
+   "threads": 8,
+   "device": "cuda"
+  },
+  "seed": 0,
+  "val_recall": 0.12579039978170195,
+  "best_epoch": 100,
+  "train_time": 427.86749243736267,
+  "test": {
+   "recall": 0.12340487817860679,
+   "ndcg": 0.13400556946806663,
+   "coverage": 0.1782112901705777,
+   "popularity": 676.9836470096194
+  },
+  "test_unbiased": {
+   "recall": 0.16996257193027903,
+   "ndcg": 0.523274962785559,
+   "coverage": 0.24684305472038484,
+   "popularity": 872.613671875
+  }
+ },
+ "kuairec|model=lightgcn,layers=3,dim=64,lr=0.005,reg=1e-05,epochs=100|seed=0": {
+  "dataset": "kuairec",
+  "phase": "grid",
+  "cfg": {
+   "model": "lightgcn",
+   "layers": 3,
+   "dim": 64,
+   "lr": 0.005,
+   "reg": 1e-05,
+   "batch": 2048,
+   "epochs": 100,
+   "threads": 8,
+   "device": "cuda"
+  },
+  "seed": 0,
+  "val_recall": 0.12072204163060382,
+  "best_epoch": 20,
+  "train_time": 166.2430658340454,
+  "test": {
+   "recall": 0.12018303628831893,
+   "ndcg": 0.12979533568173668,
+   "coverage": 0.18838940721892375,
+   "popularity": 652.1566987313537
+  },
+  "test_unbiased": {
+   "recall": 0.1649970132401177,
+   "ndcg": 0.50702122305137,
+   "coverage": 0.24804570054119063,
+   "popularity": 851.2696022727273
+  }
+ },
+ "kuairec|model=lightgcn,layers=3,dim=64,lr=0.005,reg=0.0001,epochs=100|seed=0": {
+  "dataset": "kuairec",
+  "phase": "grid",
+  "cfg": {
+   "model": "lightgcn",
+   "layers": 3,
+   "dim": 64,
+   "lr": 0.005,
+   "reg": 0.0001,
+   "batch": 2048,
+   "epochs": 100,
+   "threads": 8,
+   "device": "cuda"
+  },
+  "seed": 0,
+  "val_recall": 0.12206686648978494,
+  "best_epoch": 20,
+  "train_time": 166.51292729377747,
+  "test": {
+   "recall": 0.12101889971660233,
+   "ndcg": 0.1317069041716876,
+   "coverage": 0.17679766280275186,
+   "popularity": 666.8741879269483
+  },
+  "test_unbiased": {
+   "recall": 0.16730651128711702,
+   "ndcg": 0.5186916410861687,
+   "coverage": 0.24052916416115455,
+   "popularity": 872.587997159091
+  }
+ },
+ "kuairec|model=lightgcn,layers=3,dim=128,lr=0.001,reg=1e-05,epochs=100|seed=0": {
+  "dataset": "kuairec",
+  "phase": "grid",
+  "cfg": {
+   "model": "lightgcn",
+   "layers": 3,
+   "dim": 128,
+   "lr": 0.001,
+   "reg": 1e-05,
+   "batch": 2048,
+   "epochs": 100,
+   "threads": 8,
+   "device": "cuda"
+  },
+  "seed": 0,
+  "val_recall": 0.12677585992658863,
+  "best_epoch": 85,
+  "train_time": 592.2082648277283,
+  "test": {
+   "recall": 0.12547704736950396,
+   "ndcg": 0.13448320196165453,
+   "coverage": 0.242013005371784,
+   "popularity": 645.0766276313955
+  },
+  "test_unbiased": {
+   "recall": 0.16459279995977885,
+   "ndcg": 0.4904343788538986,
+   "coverage": 0.38123872519542995,
+   "popularity": 796.7790838068182
+  }
+ },
+ "kuairec|model=lightgcn,layers=3,dim=128,lr=0.001,reg=0.0001,epochs=100|seed=0": {
+  "dataset": "kuairec",
+  "phase": "grid",
+  "cfg": {
+   "model": "lightgcn",
+   "layers": 3,
+   "dim": 128,
+   "lr": 0.001,
+   "reg": 0.0001,
+   "batch": 2048,
+   "epochs": 100,
+   "threads": 8,
+   "device": "cuda"
+  },
+  "seed": 0,
+  "val_recall": 0.12786897660183072,
+  "best_epoch": 100,
+  "train_time": 635.3864982128143,
+  "test": {
+   "recall": 0.12549144923070632,
+   "ndcg": 0.13606770486254766,
+   "coverage": 0.26953161813212706,
+   "popularity": 641.9449463265022
+  },
+  "test_unbiased": {
+   "recall": 0.16336889772424212,
+   "ndcg": 0.4895291693274269,
+   "coverage": 0.4332531569452796,
+   "popularity": 793.2837357954545
+  }
+ },
+ "kuairec|model=lightgcn,layers=3,dim=128,lr=0.005,reg=1e-05,epochs=100|seed=0": {
+  "dataset": "kuairec",
+  "phase": "grid",
+  "cfg": {
+   "model": "lightgcn",
+   "layers": 3,
+   "dim": 128,
+   "lr": 0.005,
+   "reg": 1e-05,
+   "batch": 2048,
+   "epochs": 100,
+   "threads": 8,
+   "device": "cuda"
+  },
+  "seed": 0,
+  "val_recall": 0.12171821022772893,
+  "best_epoch": 15,
+  "train_time": 220.01416277885437,
+  "test": {
+   "recall": 0.12058254724075582,
+   "ndcg": 0.1287058155167044,
+   "coverage": 0.20271416454622562,
+   "popularity": 638.1547260560435
+  },
+  "test_unbiased": {
+   "recall": 0.16288260897447626,
+   "ndcg": 0.49530203319815397,
+   "coverage": 0.2946482260974143,
+   "popularity": 820.5297940340909
+  }
+ },
+ "kuairec|model=lightgcn,layers=3,dim=128,lr=0.005,reg=0.0001,epochs=100|seed=0": {
+  "dataset": "kuairec",
+  "phase": "grid",
+  "cfg": {
+   "model": "lightgcn",
+   "layers": 3,
+   "dim": 128,
+   "lr": 0.005,
+   "reg": 0.0001,
+   "batch": 2048,
+   "epochs": 100,
+   "threads": 8,
+   "device": "cuda"
+  },
+  "seed": 0,
+  "val_recall": 0.1239531163085072,
+  "best_epoch": 20,
+  "train_time": 249.22441601753235,
+  "test": {
+   "recall": 0.12223164966977139,
+   "ndcg": 0.13075922422851105,
+   "coverage": 0.2656677033267364,
+   "popularity": 627.5937682977833
+  },
+  "test_unbiased": {
+   "recall": 0.15923777075591372,
+   "ndcg": 0.48592019079580756,
+   "coverage": 0.41611545399879735,
+   "popularity": 788.3758877840909
+  }
+ },
+ "kuairec|model=lightgcn,layers=0,dim=128,lr=0.001,reg=0.0001,epochs=100|seed=0": {
+  "dataset": "kuairec",
+  "phase": "layers",
+  "cfg": {
+   "model": "lightgcn",
+   "layers": 0,
+   "dim": 128,
+   "lr": 0.001,
+   "reg": 0.0001,
+   "batch": 2048,
+   "epochs": 100,
+   "threads": 8,
+   "device": "cuda"
+  },
+  "seed": 0,
+  "val_recall": 0.10207688070150878,
+  "best_epoch": 25,
+  "train_time": 184.33669710159302,
+  "test": {
+   "recall": 0.1017188441485618,
+   "ndcg": 0.10726132163389364,
+   "coverage": 0.2640655923098671,
+   "popularity": 634.2384148891678
+  },
+  "test_unbiased": {
+   "recall": 0.17017326210130493,
+   "ndcg": 0.5440237139168577,
+   "coverage": 0.27300060132291043,
+   "popularity": 961.5884588068182
+  }
+ },
+ "kuairec|model=lightgcn,layers=1,dim=128,lr=0.001,reg=0.0001,epochs=100|seed=0": {
+  "dataset": "kuairec",
+  "phase": "layers",
+  "cfg": {
+   "model": "lightgcn",
+   "layers": 1,
+   "dim": 128,
+   "lr": 0.001,
+   "reg": 0.0001,
+   "batch": 2048,
+   "epochs": 100,
+   "threads": 8,
+   "device": "cuda"
+  },
+  "seed": 0,
+  "val_recall": 0.12064656799035832,
+  "best_epoch": 40,
+  "train_time": 212.89008855819702,
+  "test": {
+   "recall": 0.12003625029914536,
+   "ndcg": 0.12802280891572398,
+   "coverage": 0.24672509659787015,
+   "popularity": 645.3971490310888
+  },
+  "test_unbiased": {
+   "recall": 0.16883299494737036,
+   "ndcg": 0.5246409136359363,
+   "coverage": 0.3662056524353578,
+   "popularity": 868.4575284090909
+  }
+ },
+ "kuairec|model=lightgcn,layers=4,dim=128,lr=0.001,reg=0.0001,epochs=100|seed=0": {
+  "dataset": "kuairec",
+  "phase": "layers",
+  "cfg": {
+   "model": "lightgcn",
+   "layers": 4,
+   "dim": 128,
+   "lr": 0.001,
+   "reg": 0.0001,
+   "batch": 2048,
+   "epochs": 100,
+   "threads": 8,
+   "device": "cuda"
+  },
+  "seed": 0,
+  "val_recall": 0.12723125781006842,
+  "best_epoch": 100,
+  "train_time": 667.1539359092712,
+  "test": {
+   "recall": 0.1268928755701625,
+   "ndcg": 0.1382202149266895,
+   "coverage": 0.18245217227405522,
+   "popularity": 677.3438310330406
+  },
+  "test_unbiased": {
+   "recall": 0.1684764490324038,
+   "ndcg": 0.5070605607017296,
+   "coverage": 0.303968731208659,
+   "popularity": 834.2552911931818
+  }
+ }
+}

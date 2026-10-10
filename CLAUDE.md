@@ -91,20 +91,20 @@ One package per area so each member adds files in their own folder. Notebooks pu
 |---|---|---|
 | `data/` | 1 | `loaders.py` (paths, `load`), `splits.py` (split rules, unbiased targets, `to_pairs`), `transforms.py` (`sparsify`, `k_core`), `stats.py` (`degrees`, `stats`), `store.py` (`save_processed`, `load_processed`) |
 | `inference/` | 1 | `evaluate.py` (`evaluate`) |
-| `models/` | 2 (MF), 3 (LightGCN), 4 (most-popular) | `core.py`: `MF`, `LightGCN`, `build_norm_adj`, `SpMM` (moved unchanged from `models.py`). New models go in their own module. |
+| `models/` | 2 (MF), 3 (LightGCN), 4 (most-popular) | `core.py`: `MF`, `LightGCN`, `build_norm_adj`, `SpMM` (moved unchanged from `models.py`); `most_popular.py`: `MostPopular` (training-degree scores, matches notebook 01's preview numbers). New models go in their own module. |
 | `training/` | 2 | `train.py`: `fit`, `make_model` (moved from `train.py`; `evaluate` now imported from `inference`) |
 | `algorithms/` | 2, 3 | empty: losses, negative samplers, graph operations, the improvement fix |
 | `ablations/` | 4 | empty: ablation configs, one change at a time |
-| `experiments/` | 4 | empty: multi-seed runner saving JSON |
+| `experiments/` | 4 | `run_grid.py`: cached parameter grids for notebooks 03/04 (per-dataset JSONs in `results/`, one key per dataset+config+seed, resumes after interruption; standalone CLI, `select_best` on validation). Multi-seed runner for 06 still to add. |
 | `analysis/` | 3 | empty: degree and popularity groups, recall breakdowns, figures |
 | `utils/` | shared | `paths.py` (`ROOT`, `DATA_DIR`, `RESULTS_DIR`), `io.py` (`save_json`, `load_json`, `savefig` with the no-URL metadata) |
 
 - `data/` (owner 1): `load(name, seed)` for `"kuairand"` and `"kuairec"`. Returns `dict(name, n_users, n_items, train, val, test, test_unbiased, unbiased_items)`; each split is `{user: np.array(items)}`. Both have `test_unbiased`; `unbiased_items` (the block videos) only for KuaiRec. Users with fewer than 2 positives are dropped and ids are remapped. Raw positives are cached per process, so loading several seeds is fast after the first call (KuaiRec takes about 25 s the first time). Also `sparsify(ds, keep_frac, seed)`, `k_core(ds, k)`, `degrees(ds)`, `stats(ds)`. Notebook 02 saves the result of `load` for seeds 0-2 to `data/processed/<name>_seed<seed>.npz` (not in git); `load_processed(name, seed)` reads it back into the identical dict in under a second.
 - `models/core.py` (owner 3 for LightGCN, 2 for MF): `MF` and `LightGCN` (layers, `combine` = mean or last, `norm` = sym, left or none, edge dropout). LightGCN propagates with a CSR adjacency and `SpMM`, an autograd function whose backward uses a CSR copy of the transpose (15 times faster on CPU than the default; gradients checked).
 - `training/train.py` (owner 2) and `inference/evaluate.py` (owner 1): BPR training loop with early stopping on validation Recall@20. `fit` scores the best model on `test` and, when the dataset has one, on `test_unbiased`. `evaluate` returns Recall, NDCG, coverage, `popularity` (mean training degree of recommended items) and per-user recall; on KuaiRec's `test_unbiased` it ranks only among `unbiased_items`.
-- Planned: most-popular baseline (owner 4; it can be a model whose `embeddings()` returns a column of ones for users and the training degrees for items, see notebook 02 section 5) in `models/`, multi-seed runner in `experiments/` (owner 4), ablation configs in `ablations/` (owner 4), degree and popularity groups and figures in `analysis/` (owner 3).
+- Planned: multi-seed runner in `experiments/` (owner 4), ablation configs in `ablations/` (owner 4), degree and popularity groups and figures in `analysis/` (owner 3). Done 2026-10-10: most-popular baseline (`models/most_popular.py`, reproduces notebook 02's preview numbers) and the cached parameter-grid runner (`experiments/run_grid.py`).
 
-**Status (2026-10-01): `data.py`, `evaluate` and the LightGCN speed fix are checked. `fit` runs on both datasets but nothing is tuned. Notebooks 00, 01 and 02 are complete; notebook 08 has its code but has not been run; notebooks 03-07 are stubs. Notebook 02 (data processing, 2026-10-10) replaced the dropped smoke test.**
+**Status (2026-10-10, evening): the parameter studies are done and merged. Notebooks 00-04 are complete with outputs; the selected settings are BPR-MF dim=16 (KuaiRand) / dim=64 (KuaiRec) and LightGCN layers=3 dim=128 on both (`results/03_*`, `results/04_*` including the Colab-produced `.colab.json` files and `04_layers.png`). Notebooks 05-07 are stubs; 08 has code, not run. Next: 05 (ablation), 06 (3-seed headline with most-popular), 07 (analysis), 08 (density sweep).**
 
 ### notebooks/
 Numbered, in order, one per step. Each notebook imports from `src/`, states its purpose in the first cell, and keeps its outputs saved.
