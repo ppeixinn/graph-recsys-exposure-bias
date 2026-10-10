@@ -6,7 +6,7 @@ import numpy as np
 from utils.paths import DATA_DIR
 
 PROCESSED_DIR = os.path.join(DATA_DIR, "processed")
-SPLITS = ("train", "val", "test", "test_unbiased")
+SPLITS = ("train", "val", "test", "test_unbiased", "unbiased_exposed")
 
 
 def processed_path(name, seed):
