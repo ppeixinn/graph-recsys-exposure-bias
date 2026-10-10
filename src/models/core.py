@@ -7,10 +7,10 @@ import torch
 import torch.nn as nn
 
 
-def build_norm_adj(n_users, n_items, pairs, norm="sym", drop=0.0, rng=None):
+def build_norm_adj(n_users, n_items, pairs, norm="sym", drop=0.0, rng=None, device=None):
     """Bipartite adjacency A=[[0,R],[R^T,0]], normalised as D^-1/2 A D^-1/2 (norm='sym'),
     D^-1 A ('left') or left unnormalised ('none'). `drop` randomly removes that fraction of edges.
-    Returns the matrix and its transpose as CSR tensors."""
+    Returns the matrix and its transpose as CSR tensors (on `device` when given)."""
     u, i = pairs[:, 0], pairs[:, 1]
     if drop > 0:
         keep = rng.rand(len(u)) >= drop
@@ -26,15 +26,16 @@ def build_norm_adj(n_users, n_items, pairs, norm="sym", drop=0.0, rng=None):
     elif norm == "left":
         d = np.power(deg, -1.0, where=deg > 0, out=np.zeros_like(deg))
         A = sp.diags(d) @ A
-    return _to_csr(A), _to_csr(A.T)
+    return _to_csr(A, device), _to_csr(A.T, device)
 
 
-def _to_csr(A):
+def _to_csr(A, device=None):
     A = A.tocsr()
+    t = (lambda a: torch.from_numpy(a).to(device)) if device is not None else torch.from_numpy
     with warnings.catch_warnings():
         warnings.filterwarnings("ignore", message="Sparse CSR tensor support is in beta")
-        return torch.sparse_csr_tensor(torch.from_numpy(A.indptr.astype(np.int64)), torch.from_numpy(A.indices.astype(np.int64)),
-                                       torch.from_numpy(A.data.astype(np.float32)), A.shape, check_invariants=False)
+        return torch.sparse_csr_tensor(t(A.indptr.astype(np.int64)), t(A.indices.astype(np.int64)),
+                                       t(A.data.astype(np.float32)), A.shape, check_invariants=False)
 
 
 class SpMM(torch.autograd.Function):
@@ -80,7 +81,9 @@ class LightGCN(MF):
         self.adj = self.adj_t = None
 
     def set_graph(self, pairs, drop=0.0, rng=None):
-        self.adj, self.adj_t = build_norm_adj(self.n_users, self.n_items, pairs, self.norm, drop, rng)
+        # the adjacency lives on the same device as the embeddings
+        self.adj, self.adj_t = build_norm_adj(self.n_users, self.n_items, pairs, self.norm, drop, rng,
+                                              device=self.user.weight.device)
 
     def embeddings(self):
         e = torch.cat([self.user.weight, self.item.weight])

@@ -20,7 +20,8 @@ def fit(cfg, ds, seed=0, verbose=False, eval_every=5, patience=4):
     torch.manual_seed(seed)
     rng = np.random.RandomState(seed)
     torch.set_num_threads(cfg.get("threads", 8))
-    model = make_model(cfg, ds)
+    model = make_model(cfg, ds).to(cfg.get("device", "cpu"))
+    dev = next(model.parameters()).device
     pairs = to_pairs(ds["train"])
     n_items = ds["n_items"]
     train_sets = {u: set(v.tolist()) for u, v in ds["train"].items()}
@@ -42,7 +43,7 @@ def fit(cfg, ds, seed=0, verbose=False, eval_every=5, patience=4):
             for j in range(len(b)):  # resample negatives that are actually positives
                 while neg[j] in train_sets[u[j]]:
                     neg[j] = rng.randint(0, n_items)
-            u, pos, neg = map(torch.from_numpy, (u, pos, neg))
+            u, pos, neg = (torch.from_numpy(x).to(dev) for x in (u, pos, neg))
             U, I = model.embeddings()
             eu, ep_, en = U[u], I[pos], I[neg]
             loss = torch.nn.functional.softplus((eu * en).sum(1) - (eu * ep_).sum(1)).mean()
@@ -68,7 +69,8 @@ def fit(cfg, ds, seed=0, verbose=False, eval_every=5, patience=4):
         hist.append(row)
         if bad >= patience:
             break
-    model.load_state_dict(best["state"])
+    if best["state"] is not None:  # stays None only when the run ends before the first evaluation
+        model.load_state_dict(best["state"])
     model.set_graph(pairs, 0.0, rng)
     train_time = time.time() - t0
     test, rec, rec_items = evaluate(model, ds, "test", mask_splits=("train", "val"))
