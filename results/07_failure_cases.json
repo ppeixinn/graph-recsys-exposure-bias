@@ -4,9 +4,9 @@
     "kuairand": {
       "mf": {
         "model": "mf",
-        "dim": 16,
+        "dim": 64,
         "lr": 0.001,
-        "reg": 0.0001
+        "reg": 0.001
       },
       "lightgcn": {
         "model": "lightgcn",
@@ -20,7 +20,7 @@
       "mf": {
         "model": "mf",
         "dim": 64,
-        "lr": 0.001,
+        "lr": 0.0003,
         "reg": 0.0001
       },
       "lightgcn": {
@@ -37,23 +37,23 @@
       "dataset": "kuairand",
       "model": "mf",
       "test": "biased",
-      "recall": 0.1666,
-      "ndcg": 0.111,
-      "coverage": 0.5312,
-      "popularity": 1021.7,
-      "val_recall": 0.1632,
-      "train_time": 237
+      "recall": 0.1693,
+      "ndcg": 0.1102,
+      "coverage": 0.6164,
+      "popularity": 820.2,
+      "val_recall": 0.1673,
+      "train_time": 298
     },
     {
       "dataset": "kuairand",
       "model": "mf",
       "test": "unbiased",
-      "recall": 0.0058,
-      "ndcg": 0.004,
-      "coverage": 0.4878,
-      "popularity": 1024.5,
-      "val_recall": 0.1632,
-      "train_time": 237
+      "recall": 0.006,
+      "ndcg": 0.0041,
+      "coverage": 0.5855,
+      "popularity": 824.3,
+      "val_recall": 0.1673,
+      "train_time": 298
     },
     {
       "dataset": "kuairand",
@@ -81,23 +81,23 @@
       "dataset": "kuairec",
       "model": "mf",
       "test": "biased",
-      "recall": 0.1051,
-      "ndcg": 0.1123,
-      "coverage": 0.2034,
-      "popularity": 681.7,
-      "val_recall": 0.1074,
-      "train_time": 196
+      "recall": 0.1066,
+      "ndcg": 0.1145,
+      "coverage": 0.1684,
+      "popularity": 707.1,
+      "val_recall": 0.1084,
+      "train_time": 280
     },
     {
       "dataset": "kuairec",
       "model": "mf",
       "test": "unbiased",
-      "recall": 0.171,
-      "ndcg": 0.5556,
-      "coverage": 0.1669,
-      "popularity": 1006.3,
-      "val_recall": 0.1074,
-      "train_time": 196
+      "recall": 0.1731,
+      "ndcg": 0.5631,
+      "coverage": 0.1314,
+      "popularity": 1027.6,
+      "val_recall": 0.1084,
+      "train_time": 280
     },
     {
       "dataset": "kuairec",
@@ -138,8 +138,8 @@
       "test": "biased",
       "group": 1,
       "positives": 2405,
-      "hits": 0,
-      "recall": 0.0
+      "hits": 1,
+      "recall": 0.0004158004158004158
     },
     {
       "dataset": "kuairand",
@@ -147,8 +147,8 @@
       "test": "biased",
       "group": 2,
       "positives": 6009,
-      "hits": 9,
-      "recall": 0.0014977533699450823
+      "hits": 30,
+      "recall": 0.004992511233150275
     },
     {
       "dataset": "kuairand",
@@ -156,8 +156,8 @@
       "test": "biased",
       "group": 3,
       "positives": 17431,
-      "hits": 220,
-      "recall": 0.012621192128965637
+      "hits": 455,
+      "recall": 0.026102920084906202
     },
     {
       "dataset": "kuairand",
@@ -165,8 +165,8 @@
       "test": "biased",
       "group": 4,
       "positives": 104567,
-      "hits": 20766,
-      "recall": 0.1985903774613406
+      "hits": 21186,
+      "recall": 0.20260694100433216
     },
     {
       "dataset": "kuairand",
@@ -174,8 +174,8 @@
       "test": "unbiased",
       "group": 0,
       "positives": 30122,
-      "hits": 1,
-      "recall": 3.3198326804329064e-05
+      "hits": 0,
+      "recall": 0.0
     },
     {
       "dataset": "kuairand",
@@ -192,8 +192,8 @@
       "test": "unbiased",
       "group": 2,
       "positives": 36797,
-      "hits": 4,
-      "recall": 0.00010870451395494198
+      "hits": 10,
+      "recall": 0.00027176128488735495
     },
     {
       "dataset": "kuairand",
@@ -201,8 +201,8 @@
       "test": "unbiased",
       "group": 3,
       "positives": 41893,
-      "hits": 26,
-      "recall": 0.0006206287446590122
+      "hits": 60,
+      "recall": 0.001432220179982336
     },
     {
       "dataset": "kuairand",
@@ -210,8 +210,8 @@
       "test": "unbiased",
       "group": 4,
       "positives": 52567,
-      "hits": 1030,
-      "recall": 0.01959404188939829
+      "hits": 978,
+      "recall": 0.01860482812410828
     },
     {
       "dataset": "kuairand",
@@ -336,8 +336,8 @@
       "test": "biased",
       "group": 3,
       "positives": 29236,
-      "hits": 21,
-      "recall": 0.0007182925160760706
+      "hits": 8,
+      "recall": 0.00027363524421945547
     },
     {
       "dataset": "kuairec",
@@ -345,8 +345,8 @@
       "test": "biased",
       "group": 4,
       "positives": 131145,
-      "hits": 10881,
-      "recall": 0.08296923252888025
+      "hits": 11004,
+      "recall": 0.08390712570056044
     },
     {
       "dataset": "kuairec",
@@ -381,8 +381,8 @@
       "test": "unbiased",
       "group": 3,
       "positives": 39855,
-      "hits": 15,
-      "recall": 0.0003763643206624012
+      "hits": 8,
+      "recall": 0.00020072763768661398
     },
     {
       "dataset": "kuairec",
@@ -390,8 +390,8 @@
       "test": "unbiased",
       "group": 4,
       "positives": 171678,
-      "hits": 14883,
-      "recall": 0.086691364065285
+      "hits": 15173,
+      "recall": 0.08838057293304909
     },
     {
       "dataset": "kuairec",
@@ -491,7 +491,7 @@
       "test": "biased",
       "group": 0,
       "users": 8563,
-      "recall": 0.168029117521118
+      "recall": 0.1632021487796333
     },
     {
       "dataset": "kuairand",
@@ -499,7 +499,7 @@
       "test": "biased",
       "group": 1,
       "users": 8563,
-      "recall": 0.1742126980419635
+      "recall": 0.18292265171863442
     },
     {
       "dataset": "kuairand",
@@ -507,7 +507,7 @@
       "test": "biased",
       "group": 2,
       "users": 8563,
-      "recall": 0.15752008313204757
+      "recall": 0.1618906946232846
     },
     {
       "dataset": "kuairand",
@@ -515,7 +515,7 @@
       "test": "unbiased",
       "group": 0,
       "users": 6609,
-      "recall": 0.006273383868392459
+      "recall": 0.005842232234905492
     },
     {
       "dataset": "kuairand",
@@ -523,7 +523,7 @@
       "test": "unbiased",
       "group": 1,
       "users": 7149,
-      "recall": 0.0059548299960102075
+      "recall": 0.006374332263540409
     },
     {
       "dataset": "kuairand",
@@ -531,7 +531,7 @@
       "test": "unbiased",
       "group": 2,
       "users": 7757,
-      "recall": 0.00523552074612669
+      "recall": 0.005880179443224587
     },
     {
       "dataset": "kuairand",
@@ -587,7 +587,7 @@
       "test": "biased",
       "group": 0,
       "users": 2391,
-      "recall": 0.18162392582091452
+      "recall": 0.1837041472863305
     },
     {
       "dataset": "kuairec",
@@ -595,7 +595,7 @@
       "test": "biased",
       "group": 1,
       "users": 2391,
-      "recall": 0.08821077456622683
+      "recall": 0.09074246227109321
     },
     {
       "dataset": "kuairec",
@@ -603,7 +603,7 @@
       "test": "biased",
       "group": 2,
       "users": 2391,
-      "recall": 0.04539272707410189
+      "recall": 0.045324272239198875
     },
     {
       "dataset": "kuairec",
@@ -611,7 +611,7 @@
       "test": "unbiased",
       "group": 0,
       "users": 1284,
-      "recall": 0.17756236899632552
+      "recall": 0.1798683104160019
     },
     {
       "dataset": "kuairec",
@@ -619,7 +619,7 @@
       "test": "unbiased",
       "group": 1,
       "users": 123,
-      "recall": 0.10319170098831154
+      "recall": 0.10379512588064983
     },
     {
       "dataset": "kuairec",
@@ -627,7 +627,7 @@
       "test": "unbiased",
       "group": 2,
       "users": 1,
-      "recall": 0.0429042904290429
+      "recall": 0.0462046204620462
     },
     {
       "dataset": "kuairec",
@@ -805,15 +805,73 @@
   "example_users": {
     "kuairand|biased": [
       {
-        "user": 17566,
+        "user": 9456,
         "kind": "win",
         "recall_a": 0.0,
         "recall_b": 1.0,
         "delta": 1.0,
+        "train_degree": 2
+      },
+      {
+        "user": 14916,
+        "kind": "win",
+        "recall_a": 0.0,
+        "recall_b": 1.0,
+        "delta": 1.0,
+        "train_degree": 4
+      },
+      {
+        "user": 13070,
+        "kind": "win",
+        "recall_a": 0.0,
+        "recall_b": 1.0,
+        "delta": 1.0,
+        "train_degree": 2
+      },
+      {
+        "user": 19454,
+        "kind": "failure",
+        "recall_a": 1.0,
+        "recall_b": 0.0,
+        "delta": -1.0,
+        "train_degree": 2
+      },
+      {
+        "user": 16498,
+        "kind": "failure",
+        "recall_a": 1.0,
+        "recall_b": 0.0,
+        "delta": -1.0,
         "train_degree": 3
       },
       {
-        "user": 1540,
+        "user": 15994,
+        "kind": "failure",
+        "recall_a": 1.0,
+        "recall_b": 0.0,
+        "delta": -1.0,
+        "train_degree": 4
+      }
+    ],
+    "kuairand|unbiased": [
+      {
+        "user": 956,
+        "kind": "win",
+        "recall_a": 0.0,
+        "recall_b": 1.0,
+        "delta": 1.0,
+        "train_degree": 17
+      },
+      {
+        "user": 434,
+        "kind": "win",
+        "recall_a": 0.0,
+        "recall_b": 1.0,
+        "delta": 1.0,
+        "train_degree": 10
+      },
+      {
+        "user": 23874,
         "kind": "win",
         "recall_a": 0.0,
         "recall_b": 1.0,
@@ -821,107 +879,49 @@
         "train_degree": 6
       },
       {
-        "user": 6556,
-        "kind": "win",
-        "recall_a": 0.0,
-        "recall_b": 1.0,
-        "delta": 1.0,
-        "train_degree": 5
-      },
-      {
-        "user": 2507,
+        "user": 22395,
         "kind": "failure",
         "recall_a": 1.0,
         "recall_b": 0.0,
         "delta": -1.0,
-        "train_degree": 5
+        "train_degree": 39
       },
       {
-        "user": 24798,
+        "user": 14672,
         "kind": "failure",
         "recall_a": 1.0,
         "recall_b": 0.0,
         "delta": -1.0,
-        "train_degree": 4
+        "train_degree": 40
       },
       {
-        "user": 21086,
+        "user": 20958,
         "kind": "failure",
         "recall_a": 1.0,
         "recall_b": 0.0,
         "delta": -1.0,
-        "train_degree": 5
-      }
-    ],
-    "kuairand|unbiased": [
-      {
-        "user": 18809,
-        "kind": "win",
-        "recall_a": 0.0,
-        "recall_b": 1.0,
-        "delta": 1.0,
-        "train_degree": 3
-      },
-      {
-        "user": 24499,
-        "kind": "win",
-        "recall_a": 0.0,
-        "recall_b": 1.0,
-        "delta": 1.0,
-        "train_degree": 5
-      },
-      {
-        "user": 12984,
-        "kind": "win",
-        "recall_a": 0.0,
-        "recall_b": 1.0,
-        "delta": 1.0,
-        "train_degree": 3
-      },
-      {
-        "user": 15345,
-        "kind": "failure",
-        "recall_a": 1.0,
-        "recall_b": 0.0,
-        "delta": -1.0,
-        "train_degree": 14
-      },
-      {
-        "user": 6967,
-        "kind": "failure",
-        "recall_a": 1.0,
-        "recall_b": 0.0,
-        "delta": -1.0,
-        "train_degree": 2
-      },
-      {
-        "user": 18006,
-        "kind": "failure",
-        "recall_a": 1.0,
-        "recall_b": 0.0,
-        "delta": -1.0,
-        "train_degree": 63
+        "train_degree": 29
       }
     ],
     "kuairec|biased": [
       {
-        "user": 534,
+        "user": 3320,
         "kind": "win",
         "recall_a": 0.0,
         "recall_b": 1.0,
         "delta": 1.0,
-        "train_degree": 7
+        "train_degree": 6
       },
       {
-        "user": 2991,
+        "user": 6943,
         "kind": "win",
         "recall_a": 0.0,
         "recall_b": 1.0,
         "delta": 1.0,
-        "train_degree": 4
+        "train_degree": 5
       },
       {
-        "user": 1029,
+        "user": 4453,
         "kind": "win",
         "recall_a": 0.0,
         "recall_b": 1.0,
@@ -929,7 +929,7 @@
         "train_degree": 3
       },
       {
-        "user": 3537,
+        "user": 2785,
         "kind": "failure",
         "recall_a": 1.0,
         "recall_b": 0.0,
@@ -937,69 +937,69 @@
         "train_degree": 2
       },
       {
-        "user": 6986,
+        "user": 493,
         "kind": "failure",
         "recall_a": 1.0,
         "recall_b": 0.0,
         "delta": -1.0,
-        "train_degree": 7
+        "train_degree": 3
       },
       {
-        "user": 647,
+        "user": 770,
         "kind": "failure",
         "recall_a": 1.0,
         "recall_b": 0.0,
         "delta": -1.0,
-        "train_degree": 5
+        "train_degree": 3
       }
     ],
     "kuairec|unbiased": [
       {
         "user": 6545,
         "kind": "win",
-        "recall_a": 0.6,
+        "recall_a": 0.6666666666666666,
         "recall_b": 0.8,
-        "delta": 0.20000000000000007,
+        "delta": 0.13333333333333341,
         "train_degree": 6
       },
       {
-        "user": 1411,
+        "user": 2104,
         "kind": "win",
-        "recall_a": 0.43478260869565216,
-        "recall_b": 0.6086956521739131,
-        "delta": 0.17391304347826092,
-        "train_degree": 3
+        "recall_a": 0.16129032258064516,
+        "recall_b": 0.2903225806451613,
+        "delta": 0.12903225806451615,
+        "train_degree": 9
       },
       {
-        "user": 6229,
+        "user": 6412,
         "kind": "win",
-        "recall_a": 0.5,
-        "recall_b": 0.6111111111111112,
-        "delta": 0.11111111111111116,
-        "train_degree": 5
-      },
-      {
-        "user": 3289,
-        "kind": "failure",
-        "recall_a": 0.6818181818181818,
-        "recall_b": 0.22727272727272727,
-        "delta": -0.4545454545454545,
-        "train_degree": 2
+        "recall_a": 0.6111111111111112,
+        "recall_b": 0.7222222222222222,
+        "delta": 0.11111111111111105,
+        "train_degree": 21
       },
       {
         "user": 598,
         "kind": "failure",
-        "recall_a": 0.375,
+        "recall_a": 0.5625,
         "recall_b": 0.0,
-        "delta": -0.375,
+        "delta": -0.5625,
         "train_degree": 3
       },
       {
-        "user": 4656,
+        "user": 3289,
         "kind": "failure",
-        "recall_a": 0.35,
-        "recall_b": 0.0,
-        "delta": -0.35,
+        "recall_a": 0.7272727272727273,
+        "recall_b": 0.22727272727272727,
+        "delta": -0.5,
+        "train_degree": 2
+      },
+      {
+        "user": 4775,
+        "kind": "failure",
+        "recall_a": 0.42105263157894735,
+        "recall_b": 0.10526315789473684,
+        "delta": -0.3157894736842105,
         "train_degree": 5
       }
     ]
