@@ -1,0 +1,1007 @@
+{
+  "seed": 0,
+  "settings": {
+    "kuairand": {
+      "mf": {
+        "model": "mf",
+        "dim": 64,
+        "lr": 0.001,
+        "reg": 0.001
+      },
+      "lightgcn": {
+        "model": "lightgcn",
+        "layers": 3,
+        "dim": 128,
+        "lr": 0.001,
+        "reg": 0.0001
+      }
+    },
+    "kuairec": {
+      "mf": {
+        "model": "mf",
+        "dim": 64,
+        "lr": 0.0003,
+        "reg": 0.0001
+      },
+      "lightgcn": {
+        "model": "lightgcn",
+        "layers": 3,
+        "dim": 128,
+        "lr": 0.001,
+        "reg": 0.0001
+      }
+    }
+  },
+  "overview": [
+    {
+      "dataset": "kuairand",
+      "model": "mf",
+      "test": "biased",
+      "recall": 0.1693,
+      "ndcg": 0.1102,
+      "coverage": 0.6164,
+      "popularity": 820.2,
+      "val_recall": 0.1673,
+      "train_time": 298
+    },
+    {
+      "dataset": "kuairand",
+      "model": "mf",
+      "test": "unbiased",
+      "recall": 0.006,
+      "ndcg": 0.0041,
+      "coverage": 0.5855,
+      "popularity": 824.3,
+      "val_recall": 0.1673,
+      "train_time": 298
+    },
+    {
+      "dataset": "kuairand",
+      "model": "lightgcn",
+      "test": "biased",
+      "recall": 0.2179,
+      "ndcg": 0.1461,
+      "coverage": 0.4903,
+      "popularity": 923.2,
+      "val_recall": 0.2109,
+      "train_time": 5716
+    },
+    {
+      "dataset": "kuairand",
+      "model": "lightgcn",
+      "test": "unbiased",
+      "recall": 0.0063,
+      "ndcg": 0.0041,
+      "coverage": 0.4602,
+      "popularity": 922.5,
+      "val_recall": 0.2109,
+      "train_time": 5716
+    },
+    {
+      "dataset": "kuairec",
+      "model": "mf",
+      "test": "biased",
+      "recall": 0.1066,
+      "ndcg": 0.1145,
+      "coverage": 0.1684,
+      "popularity": 707.1,
+      "val_recall": 0.1084,
+      "train_time": 280
+    },
+    {
+      "dataset": "kuairec",
+      "model": "mf",
+      "test": "unbiased",
+      "recall": 0.1731,
+      "ndcg": 0.5631,
+      "coverage": 0.1314,
+      "popularity": 1027.6,
+      "val_recall": 0.1084,
+      "train_time": 280
+    },
+    {
+      "dataset": "kuairec",
+      "model": "lightgcn",
+      "test": "biased",
+      "recall": 0.1255,
+      "ndcg": 0.1361,
+      "coverage": 0.2695,
+      "popularity": 641.9,
+      "val_recall": 0.1279,
+      "train_time": 8155
+    },
+    {
+      "dataset": "kuairec",
+      "model": "lightgcn",
+      "test": "unbiased",
+      "recall": 0.1634,
+      "ndcg": 0.4896,
+      "coverage": 0.4333,
+      "popularity": 793.3,
+      "val_recall": 0.1279,
+      "train_time": 8155
+    }
+  ],
+  "by_item": [
+    {
+      "dataset": "kuairand",
+      "model": "mf",
+      "test": "biased",
+      "group": 0,
+      "positives": 1024,
+      "hits": 0,
+      "recall": 0.0
+    },
+    {
+      "dataset": "kuairand",
+      "model": "mf",
+      "test": "biased",
+      "group": 1,
+      "positives": 2405,
+      "hits": 1,
+      "recall": 0.0004158004158004158
+    },
+    {
+      "dataset": "kuairand",
+      "model": "mf",
+      "test": "biased",
+      "group": 2,
+      "positives": 6009,
+      "hits": 30,
+      "recall": 0.004992511233150275
+    },
+    {
+      "dataset": "kuairand",
+      "model": "mf",
+      "test": "biased",
+      "group": 3,
+      "positives": 17431,
+      "hits": 455,
+      "recall": 0.026102920084906202
+    },
+    {
+      "dataset": "kuairand",
+      "model": "mf",
+      "test": "biased",
+      "group": 4,
+      "positives": 104567,
+      "hits": 21186,
+      "recall": 0.20260694100433216
+    },
+    {
+      "dataset": "kuairand",
+      "model": "mf",
+      "test": "unbiased",
+      "group": 0,
+      "positives": 30122,
+      "hits": 0,
+      "recall": 0.0
+    },
+    {
+      "dataset": "kuairand",
+      "model": "mf",
+      "test": "unbiased",
+      "group": 1,
+      "positives": 33160,
+      "hits": 1,
+      "recall": 3.0156815440289505e-05
+    },
+    {
+      "dataset": "kuairand",
+      "model": "mf",
+      "test": "unbiased",
+      "group": 2,
+      "positives": 36797,
+      "hits": 10,
+      "recall": 0.00027176128488735495
+    },
+    {
+      "dataset": "kuairand",
+      "model": "mf",
+      "test": "unbiased",
+      "group": 3,
+      "positives": 41893,
+      "hits": 60,
+      "recall": 0.001432220179982336
+    },
+    {
+      "dataset": "kuairand",
+      "model": "mf",
+      "test": "unbiased",
+      "group": 4,
+      "positives": 52567,
+      "hits": 978,
+      "recall": 0.01860482812410828
+    },
+    {
+      "dataset": "kuairand",
+      "model": "lightgcn",
+      "test": "biased",
+      "group": 0,
+      "positives": 1024,
+      "hits": 1,
+      "recall": 0.0009765625
+    },
+    {
+      "dataset": "kuairand",
+      "model": "lightgcn",
+      "test": "biased",
+      "group": 1,
+      "positives": 2405,
+      "hits": 9,
+      "recall": 0.0037422037422037424
+    },
+    {
+      "dataset": "kuairand",
+      "model": "lightgcn",
+      "test": "biased",
+      "group": 2,
+      "positives": 6009,
+      "hits": 49,
+      "recall": 0.008154435014145449
+    },
+    {
+      "dataset": "kuairand",
+      "model": "lightgcn",
+      "test": "biased",
+      "group": 3,
+      "positives": 17431,
+      "hits": 472,
+      "recall": 0.027078194022144456
+    },
+    {
+      "dataset": "kuairand",
+      "model": "lightgcn",
+      "test": "biased",
+      "group": 4,
+      "positives": 104567,
+      "hits": 26133,
+      "recall": 0.24991632159285435
+    },
+    {
+      "dataset": "kuairand",
+      "model": "lightgcn",
+      "test": "unbiased",
+      "group": 0,
+      "positives": 30122,
+      "hits": 0,
+      "recall": 0.0
+    },
+    {
+      "dataset": "kuairand",
+      "model": "lightgcn",
+      "test": "unbiased",
+      "group": 1,
+      "positives": 33160,
+      "hits": 2,
+      "recall": 6.031363088057901e-05
+    },
+    {
+      "dataset": "kuairand",
+      "model": "lightgcn",
+      "test": "unbiased",
+      "group": 2,
+      "positives": 36797,
+      "hits": 6,
+      "recall": 0.00016305677093241298
+    },
+    {
+      "dataset": "kuairand",
+      "model": "lightgcn",
+      "test": "unbiased",
+      "group": 3,
+      "positives": 41893,
+      "hits": 41,
+      "recall": 0.0009786837896545962
+    },
+    {
+      "dataset": "kuairand",
+      "model": "lightgcn",
+      "test": "unbiased",
+      "group": 4,
+      "positives": 52567,
+      "hits": 974,
+      "recall": 0.018528734757547512
+    },
+    {
+      "dataset": "kuairec",
+      "model": "mf",
+      "test": "biased",
+      "group": 0,
+      "positives": 936,
+      "hits": 0,
+      "recall": 0.0
+    },
+    {
+      "dataset": "kuairec",
+      "model": "mf",
+      "test": "biased",
+      "group": 1,
+      "positives": 1720,
+      "hits": 1,
+      "recall": 0.0005813953488372093
+    },
+    {
+      "dataset": "kuairec",
+      "model": "mf",
+      "test": "biased",
+      "group": 2,
+      "positives": 6227,
+      "hits": 1,
+      "recall": 0.00016059097478721696
+    },
+    {
+      "dataset": "kuairec",
+      "model": "mf",
+      "test": "biased",
+      "group": 3,
+      "positives": 29236,
+      "hits": 8,
+      "recall": 0.00027363524421945547
+    },
+    {
+      "dataset": "kuairec",
+      "model": "mf",
+      "test": "biased",
+      "group": 4,
+      "positives": 131145,
+      "hits": 11004,
+      "recall": 0.08390712570056044
+    },
+    {
+      "dataset": "kuairec",
+      "model": "mf",
+      "test": "unbiased",
+      "group": 0,
+      "positives": 829,
+      "hits": 0,
+      "recall": 0.0
+    },
+    {
+      "dataset": "kuairec",
+      "model": "mf",
+      "test": "unbiased",
+      "group": 1,
+      "positives": 902,
+      "hits": 0,
+      "recall": 0.0
+    },
+    {
+      "dataset": "kuairec",
+      "model": "mf",
+      "test": "unbiased",
+      "group": 2,
+      "positives": 3463,
+      "hits": 0,
+      "recall": 0.0
+    },
+    {
+      "dataset": "kuairec",
+      "model": "mf",
+      "test": "unbiased",
+      "group": 3,
+      "positives": 39855,
+      "hits": 8,
+      "recall": 0.00020072763768661398
+    },
+    {
+      "dataset": "kuairec",
+      "model": "mf",
+      "test": "unbiased",
+      "group": 4,
+      "positives": 171678,
+      "hits": 15173,
+      "recall": 0.08838057293304909
+    },
+    {
+      "dataset": "kuairec",
+      "model": "lightgcn",
+      "test": "biased",
+      "group": 0,
+      "positives": 936,
+      "hits": 1,
+      "recall": 0.0010683760683760685
+    },
+    {
+      "dataset": "kuairec",
+      "model": "lightgcn",
+      "test": "biased",
+      "group": 1,
+      "positives": 1720,
+      "hits": 6,
+      "recall": 0.0034883720930232558
+    },
+    {
+      "dataset": "kuairec",
+      "model": "lightgcn",
+      "test": "biased",
+      "group": 2,
+      "positives": 6227,
+      "hits": 11,
+      "recall": 0.0017665007226593866
+    },
+    {
+      "dataset": "kuairec",
+      "model": "lightgcn",
+      "test": "biased",
+      "group": 3,
+      "positives": 29236,
+      "hits": 80,
+      "recall": 0.0027363524421945545
+    },
+    {
+      "dataset": "kuairec",
+      "model": "lightgcn",
+      "test": "biased",
+      "group": 4,
+      "positives": 131145,
+      "hits": 12649,
+      "recall": 0.09645049372831599
+    },
+    {
+      "dataset": "kuairec",
+      "model": "lightgcn",
+      "test": "unbiased",
+      "group": 0,
+      "positives": 829,
+      "hits": 1,
+      "recall": 0.0012062726176115801
+    },
+    {
+      "dataset": "kuairec",
+      "model": "lightgcn",
+      "test": "unbiased",
+      "group": 1,
+      "positives": 902,
+      "hits": 0,
+      "recall": 0.0
+    },
+    {
+      "dataset": "kuairec",
+      "model": "lightgcn",
+      "test": "unbiased",
+      "group": 2,
+      "positives": 3463,
+      "hits": 3,
+      "recall": 0.0008663008951775916
+    },
+    {
+      "dataset": "kuairec",
+      "model": "lightgcn",
+      "test": "unbiased",
+      "group": 3,
+      "positives": 39855,
+      "hits": 146,
+      "recall": 0.003663279387780705
+    },
+    {
+      "dataset": "kuairec",
+      "model": "lightgcn",
+      "test": "unbiased",
+      "group": 4,
+      "positives": 171678,
+      "hits": 12754,
+      "recall": 0.07429024103263085
+    }
+  ],
+  "by_user": [
+    {
+      "dataset": "kuairand",
+      "model": "mf",
+      "test": "biased",
+      "group": 0,
+      "users": 8563,
+      "recall": 0.1632021487796333
+    },
+    {
+      "dataset": "kuairand",
+      "model": "mf",
+      "test": "biased",
+      "group": 1,
+      "users": 8563,
+      "recall": 0.18292265171863442
+    },
+    {
+      "dataset": "kuairand",
+      "model": "mf",
+      "test": "biased",
+      "group": 2,
+      "users": 8563,
+      "recall": 0.1618906946232846
+    },
+    {
+      "dataset": "kuairand",
+      "model": "mf",
+      "test": "unbiased",
+      "group": 0,
+      "users": 6609,
+      "recall": 0.005842232234905492
+    },
+    {
+      "dataset": "kuairand",
+      "model": "mf",
+      "test": "unbiased",
+      "group": 1,
+      "users": 7149,
+      "recall": 0.006374332263540409
+    },
+    {
+      "dataset": "kuairand",
+      "model": "mf",
+      "test": "unbiased",
+      "group": 2,
+      "users": 7757,
+      "recall": 0.005880179443224587
+    },
+    {
+      "dataset": "kuairand",
+      "model": "lightgcn",
+      "test": "biased",
+      "group": 0,
+      "users": 8563,
+      "recall": 0.22387013896998714
+    },
+    {
+      "dataset": "kuairand",
+      "model": "lightgcn",
+      "test": "biased",
+      "group": 1,
+      "users": 8563,
+      "recall": 0.23539841955700885
+    },
+    {
+      "dataset": "kuairand",
+      "model": "lightgcn",
+      "test": "biased",
+      "group": 2,
+      "users": 8563,
+      "recall": 0.19449656022846287
+    },
+    {
+      "dataset": "kuairand",
+      "model": "lightgcn",
+      "test": "unbiased",
+      "group": 0,
+      "users": 6609,
+      "recall": 0.006964842870550985
+    },
+    {
+      "dataset": "kuairand",
+      "model": "lightgcn",
+      "test": "unbiased",
+      "group": 1,
+      "users": 7149,
+      "recall": 0.006745402966538536
+    },
+    {
+      "dataset": "kuairand",
+      "model": "lightgcn",
+      "test": "unbiased",
+      "group": 2,
+      "users": 7757,
+      "recall": 0.005374012893385746
+    },
+    {
+      "dataset": "kuairec",
+      "model": "mf",
+      "test": "biased",
+      "group": 0,
+      "users": 2391,
+      "recall": 0.1837041472863305
+    },
+    {
+      "dataset": "kuairec",
+      "model": "mf",
+      "test": "biased",
+      "group": 1,
+      "users": 2391,
+      "recall": 0.09074246227109321
+    },
+    {
+      "dataset": "kuairec",
+      "model": "mf",
+      "test": "biased",
+      "group": 2,
+      "users": 2391,
+      "recall": 0.045324272239198875
+    },
+    {
+      "dataset": "kuairec",
+      "model": "mf",
+      "test": "unbiased",
+      "group": 0,
+      "users": 1284,
+      "recall": 0.1798683104160019
+    },
+    {
+      "dataset": "kuairec",
+      "model": "mf",
+      "test": "unbiased",
+      "group": 1,
+      "users": 123,
+      "recall": 0.10379512588064983
+    },
+    {
+      "dataset": "kuairec",
+      "model": "mf",
+      "test": "unbiased",
+      "group": 2,
+      "users": 1,
+      "recall": 0.0462046204620462
+    },
+    {
+      "dataset": "kuairec",
+      "model": "lightgcn",
+      "test": "biased",
+      "group": 0,
+      "users": 2391,
+      "recall": 0.21946209722244853
+    },
+    {
+      "dataset": "kuairec",
+      "model": "lightgcn",
+      "test": "biased",
+      "group": 1,
+      "users": 2391,
+      "recall": 0.10477784610216623
+    },
+    {
+      "dataset": "kuairec",
+      "model": "lightgcn",
+      "test": "biased",
+      "group": 2,
+      "users": 2391,
+      "recall": 0.05223440436750424
+    },
+    {
+      "dataset": "kuairec",
+      "model": "lightgcn",
+      "test": "unbiased",
+      "group": 0,
+      "users": 1284,
+      "recall": 0.1699310550361622
+    },
+    {
+      "dataset": "kuairec",
+      "model": "lightgcn",
+      "test": "unbiased",
+      "group": 1,
+      "users": 123,
+      "recall": 0.09598850939224106
+    },
+    {
+      "dataset": "kuairec",
+      "model": "lightgcn",
+      "test": "unbiased",
+      "group": 2,
+      "users": 1,
+      "recall": 0.026402640264026403
+    }
+  ],
+  "item_group_info": {
+    "kuairand": [
+      {
+        "group": 0,
+        "size": 1444,
+        "deg_min": 0,
+        "deg_median": 2.0,
+        "deg_max": 3
+      },
+      {
+        "group": 1,
+        "size": 1444,
+        "deg_min": 3,
+        "deg_median": 6.0,
+        "deg_max": 9
+      },
+      {
+        "group": 2,
+        "size": 1443,
+        "deg_min": 9,
+        "deg_median": 15.0,
+        "deg_max": 24
+      },
+      {
+        "group": 3,
+        "size": 1444,
+        "deg_min": 24,
+        "deg_median": 41.0,
+        "deg_max": 73
+      },
+      {
+        "group": 4,
+        "size": 1443,
+        "deg_min": 73,
+        "deg_median": 163.0,
+        "deg_max": 4251
+      }
+    ],
+    "kuairec": [
+      {
+        "group": 0,
+        "size": 2123,
+        "deg_min": 0,
+        "deg_median": 1.0,
+        "deg_max": 1
+      },
+      {
+        "group": 1,
+        "size": 2122,
+        "deg_min": 1,
+        "deg_median": 3.0,
+        "deg_max": 5
+      },
+      {
+        "group": 2,
+        "size": 2122,
+        "deg_min": 5,
+        "deg_median": 10.0,
+        "deg_max": 20
+      },
+      {
+        "group": 3,
+        "size": 2122,
+        "deg_min": 20,
+        "deg_median": 47.0,
+        "deg_max": 92
+      },
+      {
+        "group": 4,
+        "size": 2122,
+        "deg_min": 92,
+        "deg_median": 168.5,
+        "deg_max": 1859
+      }
+    ]
+  },
+  "user_group_info": {
+    "kuairand": [
+      {
+        "group": 0,
+        "size": 8563,
+        "deg_min": 1,
+        "deg_median": 4.0,
+        "deg_max": 9
+      },
+      {
+        "group": 1,
+        "size": 8563,
+        "deg_min": 9,
+        "deg_median": 13.0,
+        "deg_max": 20
+      },
+      {
+        "group": 2,
+        "size": 8563,
+        "deg_min": 20,
+        "deg_median": 31.0,
+        "deg_max": 169
+      }
+    ],
+    "kuairec": [
+      {
+        "group": 0,
+        "size": 2391,
+        "deg_min": 1,
+        "deg_median": 23.0,
+        "deg_max": 41
+      },
+      {
+        "group": 1,
+        "size": 2391,
+        "deg_min": 41,
+        "deg_median": 63.0,
+        "deg_max": 95
+      },
+      {
+        "group": 2,
+        "size": 2391,
+        "deg_min": 95,
+        "deg_median": 147.0,
+        "deg_max": 722
+      }
+    ]
+  },
+  "example_users": {
+    "kuairand|biased": [
+      {
+        "user": 9456,
+        "kind": "win",
+        "recall_a": 0.0,
+        "recall_b": 1.0,
+        "delta": 1.0,
+        "train_degree": 2
+      },
+      {
+        "user": 14916,
+        "kind": "win",
+        "recall_a": 0.0,
+        "recall_b": 1.0,
+        "delta": 1.0,
+        "train_degree": 4
+      },
+      {
+        "user": 13070,
+        "kind": "win",
+        "recall_a": 0.0,
+        "recall_b": 1.0,
+        "delta": 1.0,
+        "train_degree": 2
+      },
+      {
+        "user": 19454,
+        "kind": "failure",
+        "recall_a": 1.0,
+        "recall_b": 0.0,
+        "delta": -1.0,
+        "train_degree": 2
+      },
+      {
+        "user": 16498,
+        "kind": "failure",
+        "recall_a": 1.0,
+        "recall_b": 0.0,
+        "delta": -1.0,
+        "train_degree": 3
+      },
+      {
+        "user": 15994,
+        "kind": "failure",
+        "recall_a": 1.0,
+        "recall_b": 0.0,
+        "delta": -1.0,
+        "train_degree": 4
+      }
+    ],
+    "kuairand|unbiased": [
+      {
+        "user": 956,
+        "kind": "win",
+        "recall_a": 0.0,
+        "recall_b": 1.0,
+        "delta": 1.0,
+        "train_degree": 17
+      },
+      {
+        "user": 434,
+        "kind": "win",
+        "recall_a": 0.0,
+        "recall_b": 1.0,
+        "delta": 1.0,
+        "train_degree": 10
+      },
+      {
+        "user": 23874,
+        "kind": "win",
+        "recall_a": 0.0,
+        "recall_b": 1.0,
+        "delta": 1.0,
+        "train_degree": 6
+      },
+      {
+        "user": 22395,
+        "kind": "failure",
+        "recall_a": 1.0,
+        "recall_b": 0.0,
+        "delta": -1.0,
+        "train_degree": 39
+      },
+      {
+        "user": 14672,
+        "kind": "failure",
+        "recall_a": 1.0,
+        "recall_b": 0.0,
+        "delta": -1.0,
+        "train_degree": 40
+      },
+      {
+        "user": 20958,
+        "kind": "failure",
+        "recall_a": 1.0,
+        "recall_b": 0.0,
+        "delta": -1.0,
+        "train_degree": 29
+      }
+    ],
+    "kuairec|biased": [
+      {
+        "user": 3320,
+        "kind": "win",
+        "recall_a": 0.0,
+        "recall_b": 1.0,
+        "delta": 1.0,
+        "train_degree": 6
+      },
+      {
+        "user": 6943,
+        "kind": "win",
+        "recall_a": 0.0,
+        "recall_b": 1.0,
+        "delta": 1.0,
+        "train_degree": 5
+      },
+      {
+        "user": 4453,
+        "kind": "win",
+        "recall_a": 0.0,
+        "recall_b": 1.0,
+        "delta": 1.0,
+        "train_degree": 3
+      },
+      {
+        "user": 2785,
+        "kind": "failure",
+        "recall_a": 1.0,
+        "recall_b": 0.0,
+        "delta": -1.0,
+        "train_degree": 2
+      },
+      {
+        "user": 493,
+        "kind": "failure",
+        "recall_a": 1.0,
+        "recall_b": 0.0,
+        "delta": -1.0,
+        "train_degree": 3
+      },
+      {
+        "user": 770,
+        "kind": "failure",
+        "recall_a": 1.0,
+        "recall_b": 0.0,
+        "delta": -1.0,
+        "train_degree": 3
+      }
+    ],
+    "kuairec|unbiased": [
+      {
+        "user": 6545,
+        "kind": "win",
+        "recall_a": 0.6666666666666666,
+        "recall_b": 0.8,
+        "delta": 0.13333333333333341,
+        "train_degree": 6
+      },
+      {
+        "user": 2104,
+        "kind": "win",
+        "recall_a": 0.16129032258064516,
+        "recall_b": 0.2903225806451613,
+        "delta": 0.12903225806451615,
+        "train_degree": 9
+      },
+      {
+        "user": 6412,
+        "kind": "win",
+        "recall_a": 0.6111111111111112,
+        "recall_b": 0.7222222222222222,
+        "delta": 0.11111111111111105,
+        "train_degree": 21
+      },
+      {
+        "user": 598,
+        "kind": "failure",
+        "recall_a": 0.5625,
+        "recall_b": 0.0,
+        "delta": -0.5625,
+        "train_degree": 3
+      },
+      {
+        "user": 3289,
+        "kind": "failure",
+        "recall_a": 0.7272727272727273,
+        "recall_b": 0.22727272727272727,
+        "delta": -0.5,
+        "train_degree": 2
+      },
+      {
+        "user": 4775,
+        "kind": "failure",
+        "recall_a": 0.42105263157894735,
+        "recall_b": 0.10526315789473684,
+        "delta": -0.3157894736842105,
+        "train_degree": 5
+      }
+    ]
+  }
+}
