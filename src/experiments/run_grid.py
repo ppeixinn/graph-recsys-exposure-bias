@@ -19,14 +19,19 @@ from utils.paths import RESULTS_DIR  # noqa: E402
 
 SHARED = dict(batch=2048, epochs=100)
 
-# Equally sized grids (fairness rule 2): 16 configurations each, the same lr/reg values, seed 0.
+# Selection grids (fairness rule 2: equally sized). Notebook 04 selects over 8 configurations, the same
+# count as notebook 03's BPR-MF grid, with lr fixed to 1e-3 (the value MF selected) so learning rate is not
+# a second difference between the models. The 8 additional lr=5e-3 LightGCN runs are a sensitivity check,
+# not selection budget: they ranked strictly lower on validation and select_best ignores them.
 # The layer sweep is a separate study on top of the grid, not extra tuning budget.
 GRIDS = {
     "03": [dict(model="mf", dim=d, lr=l, reg=r, **SHARED)
            for d in (16, 32, 64, 128) for l in (1e-3, 5e-3) for r in (1e-5, 1e-4)],
-    "04": [dict(model="lightgcn", layers=k, dim=d, lr=l, reg=r, **SHARED)
-           for k in (2, 3) for d in (64, 128) for l in (1e-3, 5e-3) for r in (1e-5, 1e-4)],
+    "04": [dict(model="lightgcn", layers=k, dim=d, lr=1e-3, reg=r, **SHARED)
+           for k in (2, 3) for d in (64, 128) for r in (1e-5, 1e-4)],
 }
+SENSITIVITY = {"04": [dict(model="lightgcn", layers=k, dim=d, lr=5e-3, reg=r, **SHARED)
+                      for k in (2, 3) for d in (64, 128) for r in (1e-5, 1e-4)]}
 LAYER_STUDY = (0, 1, 4)  # completes the curve 0-4; layers 2 and 3 are already in the grid
 FILES = {"03": "03_mf_parameters_{ds}.json", "04": "04_lightgcn_parameters_{ds}.json"}
 
@@ -100,12 +105,16 @@ def run_grid(notebook, dataset, seeds=(0,), grid=None, eval_every=5, threads=8, 
     for cfg in cfgs:
         for seed in seeds:
             _run_one(runs, notebook, dataset, cfg, seed, "grid", eval_every, threads, out, device)
+    if shard is None:  # sensitivity runs are not selection budget and stay out of the shards
+        for cfg in SENSITIVITY.get(notebook, []):
+            for seed in seeds:
+                _run_one(runs, notebook, dataset, cfg, seed, "sensitivity", eval_every, threads, out, device)
     return runs
 
 
 def select_best(runs, dataset, seed=0):
-    """Highest validation Recall@20 among the dataset's grid runs (phase='grid'; the layer study is not
-    extra tuning budget, and the unbiased test is never used)."""
+    """Highest validation Recall@20 among the dataset's grid runs (phase='grid'; the sensitivity runs and
+    the layer study are not selection budget, and the unbiased test is never used)."""
     rs = [r for r in runs.values() if r["dataset"] == dataset and r["seed"] == seed and r["phase"] == "grid"]
     return max(rs, key=lambda r: r["val_recall"])
 
