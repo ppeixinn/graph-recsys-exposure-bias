@@ -1,0 +1,410 @@
+{
+  "protocol": {
+    "tuning_seed": 0,
+    "selection_metric": "validation Recall@20",
+    "standard_test_used_for_selection": false,
+    "less_biased_test_used_for_selection": false
+  },
+  "runs": [
+    {
+      "dataset": "kuairand",
+      "label": "baseline",
+      "signature": "{\"batch\": 2048, \"dim\": 64, \"epochs\": 100, \"lr\": 0.001, \"model\": \"mf\", \"reg\": 0.0001, \"threads\": 8}",
+      "config": {
+        "model": "mf",
+        "dim": 64,
+        "lr": 0.001,
+        "reg": 0.0001,
+        "batch": 2048,
+        "epochs": 100,
+        "threads": 8
+      },
+      "val_recall": 0.16139080250278987,
+      "best_epoch": 50,
+      "epochs_completed": 70,
+      "train_time_seconds": 292.2260568141937,
+      "seconds_per_completed_epoch": 4.174657954488482
+    },
+    {
+      "dataset": "kuairand",
+      "label": "dim_16",
+      "signature": "{\"batch\": 2048, \"dim\": 16, \"epochs\": 100, \"lr\": 0.001, \"model\": \"mf\", \"reg\": 0.0001, \"threads\": 8}",
+      "config": {
+        "model": "mf",
+        "dim": 16,
+        "lr": 0.001,
+        "reg": 0.0001,
+        "batch": 2048,
+        "epochs": 100,
+        "threads": 8
+      },
+      "val_recall": 0.16318710953726728,
+      "best_epoch": 85,
+      "epochs_completed": 100,
+      "train_time_seconds": 197.4848141670227,
+      "seconds_per_completed_epoch": 1.974848141670227
+    },
+    {
+      "dataset": "kuairand",
+      "label": "dim_32",
+      "signature": "{\"batch\": 2048, \"dim\": 32, \"epochs\": 100, \"lr\": 0.001, \"model\": \"mf\", \"reg\": 0.0001, \"threads\": 8}",
+      "config": {
+        "model": "mf",
+        "dim": 32,
+        "lr": 0.001,
+        "reg": 0.0001,
+        "batch": 2048,
+        "epochs": 100,
+        "threads": 8
+      },
+      "val_recall": 0.16087391677139312,
+      "best_epoch": 50,
+      "epochs_completed": 70,
+      "train_time_seconds": 201.65746307373047,
+      "seconds_per_completed_epoch": 2.8808209010532924
+    },
+    {
+      "dataset": "kuairand",
+      "label": "dim_128",
+      "signature": "{\"batch\": 2048, \"dim\": 128, \"epochs\": 100, \"lr\": 0.001, \"model\": \"mf\", \"reg\": 0.0001, \"threads\": 8}",
+      "config": {
+        "model": "mf",
+        "dim": 128,
+        "lr": 0.001,
+        "reg": 0.0001,
+        "batch": 2048,
+        "epochs": 100,
+        "threads": 8
+      },
+      "val_recall": 0.15756821357352654,
+      "best_epoch": 35,
+      "epochs_completed": 55,
+      "train_time_seconds": 303.3263440132141,
+      "seconds_per_completed_epoch": 5.515024436603893
+    },
+    {
+      "dataset": "kuairand",
+      "label": "lr_3e-4",
+      "signature": "{\"batch\": 2048, \"dim\": 64, \"epochs\": 100, \"lr\": 0.0003, \"model\": \"mf\", \"reg\": 0.0001, \"threads\": 8}",
+      "config": {
+        "model": "mf",
+        "dim": 64,
+        "lr": 0.0003,
+        "reg": 0.0001,
+        "batch": 2048,
+        "epochs": 100,
+        "threads": 8
+      },
+      "val_recall": 0.15804692293335826,
+      "best_epoch": 100,
+      "epochs_completed": 100,
+      "train_time_seconds": 603.0344381332397,
+      "seconds_per_completed_epoch": 6.030344381332397
+    },
+    {
+      "dataset": "kuairand",
+      "label": "lr_3e-3",
+      "signature": "{\"batch\": 2048, \"dim\": 64, \"epochs\": 100, \"lr\": 0.003, \"model\": \"mf\", \"reg\": 0.0001, \"threads\": 8}",
+      "config": {
+        "model": "mf",
+        "dim": 64,
+        "lr": 0.003,
+        "reg": 0.0001,
+        "batch": 2048,
+        "epochs": 100,
+        "threads": 8
+      },
+      "val_recall": 0.15528382932641607,
+      "best_epoch": 15,
+      "epochs_completed": 35,
+      "train_time_seconds": 124.82260489463806,
+      "seconds_per_completed_epoch": 3.5663601398468017
+    },
+    {
+      "dataset": "kuairand",
+      "label": "reg_1e-5",
+      "signature": "{\"batch\": 2048, \"dim\": 64, \"epochs\": 100, \"lr\": 0.001, \"model\": \"mf\", \"reg\": 1e-05, \"threads\": 8}",
+      "config": {
+        "model": "mf",
+        "dim": 64,
+        "lr": 0.001,
+        "reg": 1e-05,
+        "batch": 2048,
+        "epochs": 100,
+        "threads": 8
+      },
+      "val_recall": 0.161096907123721,
+      "best_epoch": 50,
+      "epochs_completed": 70,
+      "train_time_seconds": 245.2668318748474,
+      "seconds_per_completed_epoch": 3.5038118839263914
+    },
+    {
+      "dataset": "kuairand",
+      "label": "reg_1e-3",
+      "signature": "{\"batch\": 2048, \"dim\": 64, \"epochs\": 100, \"lr\": 0.001, \"model\": \"mf\", \"reg\": 0.001, \"threads\": 8}",
+      "config": {
+        "model": "mf",
+        "dim": 64,
+        "lr": 0.001,
+        "reg": 0.001,
+        "batch": 2048,
+        "epochs": 100,
+        "threads": 8
+      },
+      "val_recall": 0.1673032673600497,
+      "best_epoch": 100,
+      "epochs_completed": 100,
+      "train_time_seconds": 710.2548360824585,
+      "seconds_per_completed_epoch": 7.102548360824585
+    },
+    {
+      "dataset": "kuairec",
+      "label": "baseline",
+      "signature": "{\"batch\": 2048, \"dim\": 64, \"epochs\": 100, \"lr\": 0.001, \"model\": \"mf\", \"reg\": 0.0001, \"threads\": 8}",
+      "config": {
+        "model": "mf",
+        "dim": 64,
+        "lr": 0.001,
+        "reg": 0.0001,
+        "batch": 2048,
+        "epochs": 100,
+        "threads": 8
+      },
+      "val_recall": 0.10736518643405553,
+      "best_epoch": 25,
+      "epochs_completed": 45,
+      "train_time_seconds": 261.96259212493896,
+      "seconds_per_completed_epoch": 5.821390936109755
+    },
+    {
+      "dataset": "kuairec",
+      "label": "dim_16",
+      "signature": "{\"batch\": 2048, \"dim\": 16, \"epochs\": 100, \"lr\": 0.001, \"model\": \"mf\", \"reg\": 0.0001, \"threads\": 8}",
+      "config": {
+        "model": "mf",
+        "dim": 16,
+        "lr": 0.001,
+        "reg": 0.0001,
+        "batch": 2048,
+        "epochs": 100,
+        "threads": 8
+      },
+      "val_recall": 0.10388270202106782,
+      "best_epoch": 25,
+      "epochs_completed": 45,
+      "train_time_seconds": 77.2909848690033,
+      "seconds_per_completed_epoch": 1.7175774415334066
+    },
+    {
+      "dataset": "kuairec",
+      "label": "dim_32",
+      "signature": "{\"batch\": 2048, \"dim\": 32, \"epochs\": 100, \"lr\": 0.001, \"model\": \"mf\", \"reg\": 0.0001, \"threads\": 8}",
+      "config": {
+        "model": "mf",
+        "dim": 32,
+        "lr": 0.001,
+        "reg": 0.0001,
+        "batch": 2048,
+        "epochs": 100,
+        "threads": 8
+      },
+      "val_recall": 0.10308767765326812,
+      "best_epoch": 25,
+      "epochs_completed": 45,
+      "train_time_seconds": 181.1649889945984,
+      "seconds_per_completed_epoch": 4.025888644324409
+    },
+    {
+      "dataset": "kuairec",
+      "label": "dim_128",
+      "signature": "{\"batch\": 2048, \"dim\": 128, \"epochs\": 100, \"lr\": 0.001, \"model\": \"mf\", \"reg\": 0.0001, \"threads\": 8}",
+      "config": {
+        "model": "mf",
+        "dim": 128,
+        "lr": 0.001,
+        "reg": 0.0001,
+        "batch": 2048,
+        "epochs": 100,
+        "threads": 8
+      },
+      "val_recall": 0.10207688070150878,
+      "best_epoch": 25,
+      "epochs_completed": 45,
+      "train_time_seconds": 468.8225929737091,
+      "seconds_per_completed_epoch": 10.418279843860203
+    },
+    {
+      "dataset": "kuairec",
+      "label": "lr_3e-4",
+      "signature": "{\"batch\": 2048, \"dim\": 64, \"epochs\": 100, \"lr\": 0.0003, \"model\": \"mf\", \"reg\": 0.0001, \"threads\": 8}",
+      "config": {
+        "model": "mf",
+        "dim": 64,
+        "lr": 0.0003,
+        "reg": 0.0001,
+        "batch": 2048,
+        "epochs": 100,
+        "threads": 8
+      },
+      "val_recall": 0.1084205505968868,
+      "best_epoch": 75,
+      "epochs_completed": 95,
+      "train_time_seconds": 489.310359954834,
+      "seconds_per_completed_epoch": 5.150635367945621
+    },
+    {
+      "dataset": "kuairec",
+      "label": "lr_3e-3",
+      "signature": "{\"batch\": 2048, \"dim\": 64, \"epochs\": 100, \"lr\": 0.003, \"model\": \"mf\", \"reg\": 0.0001, \"threads\": 8}",
+      "config": {
+        "model": "mf",
+        "dim": 64,
+        "lr": 0.003,
+        "reg": 0.0001,
+        "batch": 2048,
+        "epochs": 100,
+        "threads": 8
+      },
+      "val_recall": 0.10083821844445583,
+      "best_epoch": 5,
+      "epochs_completed": 25,
+      "train_time_seconds": 79.66566801071167,
+      "seconds_per_completed_epoch": 3.1866267204284666
+    },
+    {
+      "dataset": "kuairec",
+      "label": "reg_1e-5",
+      "signature": "{\"batch\": 2048, \"dim\": 64, \"epochs\": 100, \"lr\": 0.001, \"model\": \"mf\", \"reg\": 1e-05, \"threads\": 8}",
+      "config": {
+        "model": "mf",
+        "dim": 64,
+        "lr": 0.001,
+        "reg": 1e-05,
+        "batch": 2048,
+        "epochs": 100,
+        "threads": 8
+      },
+      "val_recall": 0.10705028867552732,
+      "best_epoch": 25,
+      "epochs_completed": 45,
+      "train_time_seconds": 156.16829800605774,
+      "seconds_per_completed_epoch": 3.4704066223568386
+    },
+    {
+      "dataset": "kuairec",
+      "label": "reg_1e-3",
+      "signature": "{\"batch\": 2048, \"dim\": 64, \"epochs\": 100, \"lr\": 0.001, \"model\": \"mf\", \"reg\": 0.001, \"threads\": 8}",
+      "config": {
+        "model": "mf",
+        "dim": 64,
+        "lr": 0.001,
+        "reg": 0.001,
+        "batch": 2048,
+        "epochs": 100,
+        "threads": 8
+      },
+      "val_recall": 0.10733785011843036,
+      "best_epoch": 25,
+      "epochs_completed": 45,
+      "train_time_seconds": 162.93679690361023,
+      "seconds_per_completed_epoch": 3.620817708969116
+    }
+  ],
+  "selected": [
+    {
+      "dataset": "kuairand",
+      "label": "reg_1e-3",
+      "signature": "{\"batch\": 2048, \"dim\": 64, \"epochs\": 100, \"lr\": 0.001, \"model\": \"mf\", \"reg\": 0.001, \"threads\": 8}",
+      "config": {
+        "model": "mf",
+        "dim": 64,
+        "lr": 0.001,
+        "reg": 0.001,
+        "batch": 2048,
+        "epochs": 100,
+        "threads": 8
+      },
+      "val_recall": 0.1673032673600497,
+      "best_epoch": 100,
+      "epochs_completed": 100,
+      "train_time_seconds": 710.2548360824585,
+      "seconds_per_completed_epoch": 7.102548360824585
+    },
+    {
+      "dataset": "kuairec",
+      "label": "lr_3e-4",
+      "signature": "{\"batch\": 2048, \"dim\": 64, \"epochs\": 100, \"lr\": 0.0003, \"model\": \"mf\", \"reg\": 0.0001, \"threads\": 8}",
+      "config": {
+        "model": "mf",
+        "dim": 64,
+        "lr": 0.0003,
+        "reg": 0.0001,
+        "batch": 2048,
+        "epochs": 100,
+        "threads": 8
+      },
+      "val_recall": 0.1084205505968868,
+      "best_epoch": 75,
+      "epochs_completed": 95,
+      "train_time_seconds": 489.310359954834,
+      "seconds_per_completed_epoch": 5.150635367945621
+    }
+  ],
+  "final_evaluations": {
+    "kuairand": {
+      "label": "reg_1e-3",
+      "config": {
+        "model": "mf",
+        "dim": 64,
+        "lr": 0.001,
+        "reg": 0.001,
+        "batch": 2048,
+        "epochs": 100,
+        "threads": 8
+      },
+      "val_recall": 0.1673032673600497,
+      "best_epoch": 100,
+      "train_time_seconds": 380.05437898635864,
+      "standard_test": {
+        "recall": 0.1693384983738508,
+        "ndcg": 0.11020083569068138,
+        "coverage": 0.6163757273482959,
+        "popularity": 820.1632663786056
+      },
+      "less_biased_test": {
+        "recall": 0.006032719783111033,
+        "ndcg": 0.0040803849255994715,
+        "coverage": 0.5854807425879746,
+        "popularity": 824.2936323495236
+      }
+    },
+    "kuairec": {
+      "label": "lr_3e-4",
+      "config": {
+        "model": "mf",
+        "dim": 64,
+        "lr": 0.0003,
+        "reg": 0.0001,
+        "batch": 2048,
+        "epochs": 100,
+        "threads": 8
+      },
+      "val_recall": 0.1084205505968868,
+      "best_epoch": 75,
+      "train_time_seconds": 288.7107536792755,
+      "standard_test": {
+        "recall": 0.10659029393220751,
+        "ndcg": 0.11449717020228534,
+        "coverage": 0.16841014042031854,
+        "popularity": 707.1027673219015
+      },
+      "less_biased_test": {
+        "recall": 0.17312778102125598,
+        "ndcg": 0.5630712013480147,
+        "coverage": 0.13138905592303066,
+        "popularity": 1027.5854048295455
+      }
+    }
+  }
+}
