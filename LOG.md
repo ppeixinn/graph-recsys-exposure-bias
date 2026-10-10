@@ -213,3 +213,5 @@ Append one entry per step: date, what was done, result, decisions and why.
 - Comment pass over the day's changes: device handling in `evaluate` and `set_graph` got one-line comments; `run_grid.load_runs` now documents that other-machine files (`.colab.json`) merge in and local keys win. No code changes; all imports verified after removing `__pycache__` folders.
 - All work so far committed on the new branch `member3` (two commits: the GPU device support; the baseline, grid runner, notebooks 03/04 and their results). main stays at origin; the branch is ready to push when credentials are available.
 
+## 2026-10-10 (member3 branch scoped to member 3)
+- `member3` no longer carries notebook 03 (member 2's parameter study): the notebook is restored to the upstream stub and the two MF result JSONs are removed from the branch. The full state including them is preserved on the local branch `grids-backup` (commit ac3bb64), and the MF grids can be regenerated with `python3 src/experiments/run_grid.py 03 kuairand 03 kuairec` in about 1.5 h on CPU. Notebook 04 and the runner do not read any 03 file, so nothing else changes.
