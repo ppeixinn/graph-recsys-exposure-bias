@@ -26,7 +26,8 @@ def evaluate(model, ds, split, k=20, mask_splits=("train",)):
         outside[candidates] = False
     for s in range(0, len(users), 1024):
         batch = users[s:s + 1024]
-        scores = (U[batch] @ I.T).numpy()
+        # score on the embeddings' device, move each batch's scores back to CPU once
+        scores = (U[torch.as_tensor(batch, device=U.device)] @ I.T).float().cpu().numpy()
         if outside is not None:
             scores[:, outside] = -np.inf
         for r, u in enumerate(batch):
