@@ -142,6 +142,56 @@
    "removed_share": 0.0
   }
  },
+ "filtering": {
+  "biased": {
+   "positive pairs": {
+    "KuaiRand-Pure": 653051,
+    "KuaiRec": 846414
+   },
+   "users": {
+    "KuaiRand-Pure": 26591,
+    "KuaiRec": 7175
+   },
+   "users with 1 positive (dropped)": {
+    "KuaiRand-Pure": 902,
+    "KuaiRec": 2
+   },
+   "videos": {
+    "KuaiRand-Pure": 7218,
+    "KuaiRec": 10611
+   },
+   "pairs kept": {
+    "KuaiRand-Pure": 652149,
+    "KuaiRec": 846412
+   },
+   "users kept": {
+    "KuaiRand-Pure": 25689,
+    "KuaiRec": 7173
+   },
+   "videos kept": {
+    "KuaiRand-Pure": 7218,
+    "KuaiRec": 10611
+   }
+  },
+  "unbiased": {
+   "positive pairs": {
+    "KuaiRand-Pure": 208934,
+    "KuaiRec": 217229
+   },
+   "of users and videos in the graph": {
+    "KuaiRand-Pure": 194544,
+    "KuaiRec": 216727
+   },
+   "not positive in the biased logs (final)": {
+    "KuaiRand-Pure": 194539,
+    "KuaiRec": 216727
+   },
+   "users (final)": {
+    "KuaiRand-Pure": 21515,
+    "KuaiRec": 1408
+   }
+  }
+ },
  "split_compare": {
   "kuairand|test": {
    "users": 25689,

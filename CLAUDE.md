@@ -89,7 +89,7 @@ One package per area so each member adds files in their own folder. Notebooks pu
 
 | Folder | Owner | Contents |
 |---|---|---|
-| `data/` | 1 | `loaders.py` (paths, `load`), `splits.py` (split rules, unbiased targets, `to_pairs`), `transforms.py` (`sparsify`, `k_core`), `stats.py` (`degrees`, `stats`) |
+| `data/` | 1 | `loaders.py` (paths, `load`), `splits.py` (split rules, unbiased targets, `to_pairs`), `transforms.py` (`sparsify`, `k_core`), `stats.py` (`degrees`, `stats`), `store.py` (`save_processed`, `load_processed`) |
 | `inference/` | 1 | `evaluate.py` (`evaluate`) |
 | `models/` | 2 (MF), 3 (LightGCN), 4 (most-popular) | `core.py`: `MF`, `LightGCN`, `build_norm_adj`, `SpMM` (moved unchanged from `models.py`). New models go in their own module. |
 | `training/` | 2 | `train.py`: `fit`, `make_model` (moved from `train.py`; `evaluate` now imported from `inference`) |
@@ -99,17 +99,18 @@ One package per area so each member adds files in their own folder. Notebooks pu
 | `analysis/` | 3 | empty: degree and popularity groups, recall breakdowns, figures |
 | `utils/` | shared | `paths.py` (`ROOT`, `DATA_DIR`, `RESULTS_DIR`), `io.py` (`save_json`, `load_json`, `savefig` with the no-URL metadata) |
 
-- `data/` (owner 1): `load(name, seed)` for `"kuairand"` and `"kuairec"`. Returns `dict(name, n_users, n_items, train, val, test, test_unbiased, unbiased_items)`; each split is `{user: np.array(items)}`. Both have `test_unbiased`; `unbiased_items` (the block videos) only for KuaiRec. Users with fewer than 2 positives are dropped and ids are remapped. Raw positives are cached per process, so loading several seeds is fast after the first call (KuaiRec takes about 25 s the first time). Also `sparsify(ds, keep_frac, seed)`, `k_core(ds, k)`, `degrees(ds)`, `stats(ds)`.
+- `data/` (owner 1): `load(name, seed)` for `"kuairand"` and `"kuairec"`. Returns `dict(name, n_users, n_items, train, val, test, test_unbiased, unbiased_items)`; each split is `{user: np.array(items)}`. Both have `test_unbiased`; `unbiased_items` (the block videos) only for KuaiRec. Users with fewer than 2 positives are dropped and ids are remapped. Raw positives are cached per process, so loading several seeds is fast after the first call (KuaiRec takes about 25 s the first time). Also `sparsify(ds, keep_frac, seed)`, `k_core(ds, k)`, `degrees(ds)`, `stats(ds)`. Notebook 02 saves the result of `load` for seeds 0-2 to `data/processed/<name>_seed<seed>.npz` (not in git); `load_processed(name, seed)` reads it back into the identical dict in under a second.
 - `models/core.py` (owner 3 for LightGCN, 2 for MF): `MF` and `LightGCN` (layers, `combine` = mean or last, `norm` = sym, left or none, edge dropout). LightGCN propagates with a CSR adjacency and `SpMM`, an autograd function whose backward uses a CSR copy of the transpose (15 times faster on CPU than the default; gradients checked).
 - `training/train.py` (owner 2) and `inference/evaluate.py` (owner 1): BPR training loop with early stopping on validation Recall@20. `fit` scores the best model on `test` and, when the dataset has one, on `test_unbiased`. `evaluate` returns Recall, NDCG, coverage, `popularity` (mean training degree of recommended items) and per-user recall; on KuaiRec's `test_unbiased` it ranks only among `unbiased_items`.
-- Planned: most-popular baseline (owner 4; it can be a model whose `embeddings()` returns a column of ones for users and the training degrees for items, see notebook 01 section B6) in `models/`, multi-seed runner in `experiments/` (owner 4), ablation configs in `ablations/` (owner 4), degree and popularity groups and figures in `analysis/` (owner 3).
+- Planned: most-popular baseline (owner 4; it can be a model whose `embeddings()` returns a column of ones for users and the training degrees for items, see notebook 02 section 5) in `models/`, multi-seed runner in `experiments/` (owner 4), ablation configs in `ablations/` (owner 4), degree and popularity groups and figures in `analysis/` (owner 3).
 
-**Status (2026-10-01): `data.py`, `evaluate` and the LightGCN speed fix are checked. `fit` runs on both datasets but nothing is tuned. Notebooks 00 and 01 are complete; notebook 08 has its code but has not been run; notebooks 03-07 are stubs. There is no notebook 02: the smoke test was dropped on 2026-10-10; members check the pipeline step by step in their own notebooks.**
+**Status (2026-10-01): `data.py`, `evaluate` and the LightGCN speed fix are checked. `fit` runs on both datasets but nothing is tuned. Notebooks 00, 01 and 02 are complete; notebook 08 has its code but has not been run; notebooks 03-07 are stubs. Notebook 02 (data processing, 2026-10-10) replaced the dropped smoke test.**
 
 ### notebooks/
 Numbered, in order, one per step. Each notebook imports from `src/`, states its purpose in the first cell, and keeps its outputs saved.
 - `00_introduction.ipynb`: text only: theme, exposure bias, why BPR-MF vs. LightGCN, objectives (owner 1).
-- `01_data_exploration.ipynb`: Part A raw data of KuaiRand-Pure and KuaiRec in tables; Part B split sizes with the unbiased tests, split checks, degree distributions, positive definitions, popularity of biased vs. unbiased test positives, most-popular preview (owner 1).
+- `01_data_exploration.ipynb`: raw data of KuaiRand-Pure and KuaiRec: files, columns, feedback signals, watch time and watch ratio, users and videos, how the unbiased parts were collected (owner 1).
+- `02_data_processing.ipynb`: positive definitions, repeated interactions, filtering, splits and unbiased test sets, split checks, degree distributions, side-by-side table, popularity of biased vs. unbiased test positives, most-popular preview; saves `data/processed/*.npz` (owner 1).
 - `03_mf_parameters.ipynb`, `04_lightgcn_parameters.ipynb`: parameter studies on validation.
 - `05_ablation.ipynb`: component ablations.
 - `06_main_comparison.ipynb`: most-popular, MF, LightGCN on both tests of both datasets, mean ± std over seeds (headline).
@@ -158,7 +159,7 @@ Goal: test whether LightGCN's advantage, on each test, depends on interaction de
 - A k-core filter (5-core, 10-core) is a separate, secondary variant because it also changes the item set; keep it apart from random subsampling.
 - `sparsify(ds, keep_frac, seed)` and `k_core(ds, k)` in `src/data/transforms.py`; notebook `08_density_sweep.ipynb`.
 
-## Data status (checked 2026-10-01, seed 0, numbers in `results/01_data_stats.json`)
+## Data status (checked 2026-10-01, seed 0, numbers in `results/02_data_stats.json`)
 - **KuaiRand-Pure** (`is_click`): 25,689 users, 7,218 items, 466,490 train / 54,223 val / 131,436 test, density 0.25%. Unbiased test: 194,539 clicks of 21,515 users. 63% of biased test positives are on the 10% most popular items, 14% of unbiased ones. Most-popular baseline: Recall@20 0.114 on the biased test, 0.007 on the unbiased test.
 - **KuaiRec** (`watch_ratio >= 2`): 7,173 users, 10,611 items, 609,375 train / 67,773 val / 169,264 test, density 0.80%. Unbiased test: 216,727 positives of 1,408 users over 3,326 block videos. The block videos are popular (31% are in the top 10% by plays), so 55% of unbiased positives are on the top 10% items, like the biased test (56%). Most-popular: Recall@20 0.074 / NDCG@20 0.088 on the biased test, 0.150 / 0.541 on the unbiased test (best possible Recall@20 there is 0.32).
 - The two unbiased tests remove different biases: KuaiRand's removes the recommender's choice of which videos are shown; KuaiRec's removes missing feedback on a fixed, popular block.
@@ -182,7 +183,8 @@ The owner creates the notebook, writes the code cells, runs them, saves outputs,
 | Notebook | Owner | Task | Needs from others |
 |---|---|---|---|
 | `00_introduction` | **1** | Text only: theme, exposure bias, method rationale, objectives, notebook map. Source for the Introduction. (done) | none |
-| `01_data_exploration` | **1** | Part A: raw data of both datasets in tables. Part B: split sizes with the unbiased tests, split checks, degree distributions, positive definitions, repeated interactions, popularity of biased vs. unbiased test positives, most-popular preview. (done) | none |
+| `01_data_exploration` | **1** | Raw data of both datasets: files, columns, feedback, watch ratio, users and videos, how the unbiased parts were collected. (done) | none |
+| `02_data_processing` | **1** | Positive definitions, repeated interactions, filtering, split sizes with the unbiased tests, split checks, degree distributions, popularity of biased vs. unbiased test positives, most-popular preview. Saves the processed datasets to `data/processed/`. (done) | none |
 | `03_mf_parameters` | **2** | BPR-MF study: embedding dim (16/32/64/128), learning rate, L2, on both datasets, selected on validation Recall@20. Report the unbiased test of the selected setting only. | 1's loaders and evaluation |
 | `04_lightgcn_parameters` | **3** | LightGCN study: layers 0–4 (over-smoothing curve on both tests), embedding dim, learning rate, L2. Layer 0 is the MF-equivalent control. | 1's loaders, 2's training loop |
 | `05_ablation` | **4** | One change at a time: mean vs. last-layer combination, symmetric vs. no normalization, edge dropout on/off. Table of deltas on both datasets and both tests. | 3's LightGCN switches |

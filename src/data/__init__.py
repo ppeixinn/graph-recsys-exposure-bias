@@ -5,3 +5,4 @@ from .loaders import (KUAI_DIR, KUAI_STANDARD, KUAI_RANDOM, KUAIREC_ZIP, KUAIREC
 from .splits import to_pairs
 from .transforms import sparsify, k_core
 from .stats import degrees, stats
+from .store import PROCESSED_DIR, save_processed, load_processed
