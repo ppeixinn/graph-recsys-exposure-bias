@@ -95,7 +95,7 @@ One package per area so each member adds files in their own folder. Notebooks pu
 | `training/` | 2 | `train.py`: `fit`, `make_model` (moved from `train.py`; `evaluate` now imported from `inference`) |
 | `algorithms/` | 2, 3 | empty: losses, negative samplers, graph operations, the improvement fix |
 | `ablations/` | 4 | empty: ablation configs, one change at a time |
-| `experiments/` | 4 | `run_grid.py`: cached parameter grids for notebooks 03/04 (per-dataset JSONs in `results/`, one key per dataset+config+seed, resumes after interruption; standalone CLI, `select_best` on validation). Multi-seed runner for 06 still to add. |
+| `experiments/` | 4 | `run_grid.py`: cached parameter grids for notebooks 03/04 (per-dataset JSONs in `results/`, one key per dataset+config+seed, resumes after interruption; standalone CLI, `select_best` on validation). `density_sweep.py` (owner 1): notebook 08's sweep, both models at the 03/04 selected settings on `keep=<frac>` and `core=<k>` variants, one cached JSON per dataset and variant (`results/08_density_<ds>_<variant>.json`), standalone CLI so chains run in parallel processes. Multi-seed runner for 06 still to add. |
 | `analysis/` | 3 | empty: degree and popularity groups, recall breakdowns, figures |
 | `utils/` | shared | `paths.py` (`ROOT`, `DATA_DIR`, `RESULTS_DIR`), `io.py` (`save_json`, `load_json`, `savefig` with the no-URL metadata) |
 
@@ -106,7 +106,9 @@ One package per area so each member adds files in their own folder. Notebooks pu
 
 **Status (2026-10-10, evening): the parameter studies are done and merged. Notebooks 00-04 are complete with outputs; the selected settings are BPR-MF dim=64 lr=1e-3 reg=1e-3 (KuaiRand) / dim=64 lr=3e-4 reg=1e-4 (KuaiRec) and LightGCN layers=3 dim=128 on both. Fairness rule 2 restored at 8-vs-8: notebook 04 selects over an 8-configuration grid (lr fixed to the MF-selected 1e-3), and its 8 lr=5e-3 runs are labelled sensitivity — they ranked strictly lower and change no selection (`results/03_mf_parameters.json`, `03_mf_validation.png`, `results/04_*` including the Colab-produced `.colab.json` files and `04_layers.png`). Notebook 07 is complete on the `member3` branch; 05 and 06 are stubs; 08 has code, not run. Next: 05 (ablation), 06 (3-seed headline with most-popular), 08 (density sweep).**
 
-**Status (2026-10-11): exposure-only unbiased evaluation (GAUC, NDCG@5) decided; implemented by owner 1 on branch `member1-exposed-eval` (`unbiased_exposed` in both loaders and `store.py`, `inference.evaluate_exposed`, `k_core`); `fit` returns it as `test_exposed` next to `test_unbiased`; still to do: every member regenerating `data/processed/*.npz` (notebook 02's save cell). 05, 06 and 08 wait until it is merged. 03/04 are not rerun.**
+**Status (2026-10-11): exposure-only unbiased evaluation (GAUC, NDCG@5) decided; implemented by owner 1 on branch `member1-exposed-eval` (`unbiased_exposed` in both loaders and `store.py`, `inference.evaluate_exposed`, `k_core`); `fit` returns it as `test_exposed` next to `test_unbiased`; still to do: every member regenerating `data/processed/*.npz` (notebook 02's save cell). Merged to main (PR #2). 03/04 are not rerun.**
+
+**Status (2026-10-11, afternoon): notebook 08 rewritten (selected settings, exposure-only GAUC, most-popular reference per level, warm/cold users) on branch `member1-density-sweep`; random subsampling finished (seed 0, 16 runs; findings in notebook 08 and LOG.md: LightGCN's lead over BPR-MF grows as density falls because BPR-MF collapses, but on the unbiased test LightGCN never clearly beats most-popular); the 5/10-core variants are still training in two background processes (logs in `data/processed/08_logs/`).**
 
 ### notebooks/
 Numbered, in order, one per step. Each notebook imports from `src/`, states its purpose in the first cell, and keeps its outputs saved.
@@ -192,7 +194,7 @@ The owner creates the notebook, writes the code cells, runs them, saves outputs,
 | `05_ablation` | **4** | One change at a time: mean vs. last-layer combination, symmetric vs. no normalization, edge dropout on/off. Table of deltas on both datasets and both tests. | 3's LightGCN switches |
 | `06_main_comparison` | **4** | Headline: most-popular, BPR-MF and LightGCN with the best validation settings from 03 and 04, 3 seeds, both datasets, both tests. Recall@20, NDCG@20, margin over most-popular, coverage, popularity, training time, mean ± std. Headline figure. | 03, 04 results |
 | `07_failure_cases` | **3** | Recall by item-popularity bucket and by user degree group (cold/medium/heavy) on both tests; where LightGCN's gain comes from; example users where it wins and fails. | 1's per-user recall from `evaluate`, 06 models |
-| `08_density_sweep` | **1** | Recall vs. training density (100/50/25/10%) for both models on both datasets, scored on both tests, using `sparsify`. Cold users created. Secondary k-core variant. Code ready, not run. | 2 and 3 for the models, 03/04 settings |
+| `08_density_sweep` | **1** | Recall vs. training density (100/50/25/10%) for both models on both datasets, scored on both tests, using `sparsify`. Cold users created. Secondary k-core variant. Runner `experiments/density_sweep.py`; seed-0 subsampling done, k-core running. | 2 and 3 for the models, 03/04 settings |
 
 Module owners: `data/` and `inference/` are 1; `MF` and the training loop are 2; `LightGCN` and `analysis/` are 3; most-popular baseline and `experiments/` (multi-seed runner, saves JSON) and `ablations/` are 4.
 
