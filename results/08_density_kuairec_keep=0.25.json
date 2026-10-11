@@ -1,0 +1,117 @@
+{
+ "kuairec|keep=0.25|mf|seed=0": {
+  "dataset": "kuairec",
+  "variant": "keep=0.25",
+  "model": "mf",
+  "seed": 0,
+  "cfg": {
+   "model": "mf",
+   "dim": 64,
+   "lr": 0.0003,
+   "reg": 0.0001,
+   "batch": 2048,
+   "epochs": 100,
+   "threads": 4
+  },
+  "stats": {
+   "name": "KuaiRec (watch_ratio >= 2) [25% train]",
+   "users": 7173,
+   "items": 10611,
+   "train": 152344,
+   "val": 67773,
+   "test": 169264,
+   "test_unbiased": 216727,
+   "density": 0.0020015581367541237,
+   "cold_users": 68,
+   "cold_items": 1270,
+   "train_users": 7105,
+   "train_items": 7781,
+   "cold_users_unbiased": 58
+  },
+  "val_recall": 0.059955500209852075,
+  "best_epoch": 95,
+  "epochs_run": 100,
+  "train_time": 258.6351652145386,
+  "test": {
+   "recall": 0.05978868486312117,
+   "ndcg": 0.06406270890231924,
+   "coverage": 0.2614268212232589,
+   "popularity": 208.76375993308238
+  },
+  "test_unbiased": {
+   "recall": 0.08820765196783041,
+   "ndcg": 0.34336196261874813,
+   "coverage": 0.6596512327119664,
+   "popularity": 182.983203125
+  },
+  "test_exposed": {
+   "gauc": 0.6887667223393219,
+   "ndcg": 0.41903613241260745,
+   "k": 5,
+   "users_gauc": 1408,
+   "users_ndcg": 1408
+  },
+  "recall_warm": 0.05997385454231783,
+  "recall_cold": 0.04044117647058824,
+  "gauc_warm": 0.6985193092027787,
+  "gauc_cold": 0.46176685568989656
+ },
+ "kuairec|keep=0.25|lightgcn|seed=0": {
+  "dataset": "kuairec",
+  "variant": "keep=0.25",
+  "model": "lightgcn",
+  "seed": 0,
+  "cfg": {
+   "model": "lightgcn",
+   "layers": 3,
+   "dim": 128,
+   "lr": 0.001,
+   "reg": 0.0001,
+   "batch": 2048,
+   "epochs": 100,
+   "threads": 4
+  },
+  "stats": {
+   "name": "KuaiRec (watch_ratio >= 2) [25% train]",
+   "users": 7173,
+   "items": 10611,
+   "train": 152344,
+   "val": 67773,
+   "test": 169264,
+   "test_unbiased": 216727,
+   "density": 0.0020015581367541237,
+   "cold_users": 68,
+   "cold_items": 1270,
+   "train_users": 7105,
+   "train_items": 7781,
+   "cold_users_unbiased": 58
+  },
+  "val_recall": 0.0841203863136474,
+  "best_epoch": 25,
+  "epochs_run": 45,
+  "train_time": 655.243985414505,
+  "test": {
+   "recall": 0.08236160263467582,
+   "ndcg": 0.08387891040881297,
+   "coverage": 0.07426255772311752,
+   "popularity": 219.30340164505785
+  },
+  "test_unbiased": {
+   "recall": 0.16822006909957044,
+   "ndcg": 0.5756766543183129,
+   "coverage": 0.15995189416716776,
+   "popularity": 261.3056463068182
+  },
+  "test_exposed": {
+   "gauc": 0.7510121362669703,
+   "ndcg": 0.6456713275567986,
+   "k": 5,
+   "users_gauc": 1408,
+   "users_ndcg": 1408
+  },
+  "recall_warm": 0.08269243852196055,
+  "recall_cold": 0.04779411764705882,
+  "gauc_warm": 0.7623372045186556,
+  "gauc_cold": 0.487411409719119
+ }
+}
