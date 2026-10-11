@@ -1,0 +1,78 @@
+{
+ "kuairand|model=lightgcn,layers=3,dim=128,lr=0.001,reg=0.0001,epochs=100|seed=0": {
+  "dataset": "kuairand",
+  "phase": "grid",
+  "cfg": {
+   "model": "lightgcn",
+   "layers": 3,
+   "dim": 128,
+   "lr": 0.001,
+   "reg": 0.0001,
+   "batch": 2048,
+   "epochs": 100,
+   "threads": 2
+  },
+  "seed": 0,
+  "val_recall": 0.21085802268767564,
+  "best_epoch": 95,
+  "train_time": 9873.364925146103,
+  "test": {
+   "recall": 0.21792170625181964,
+   "ndcg": 0.1460807393589108,
+   "coverage": 0.49030202272097534,
+   "popularity": 923.1558429678072
+  },
+  "test_unbiased": {
+   "recall": 0.006318370920439167,
+   "ndcg": 0.004143972417475746,
+   "coverage": 0.4602382931559989,
+   "popularity": 922.5441203811295
+  },
+  "test_exposed": {
+   "gauc": 0.6140327706537221,
+   "ndcg": 0.4067015396569859,
+   "k": 5,
+   "users_gauc": 21508,
+   "users_ndcg": 21515
+  },
+  "epochs_run": 100
+ },
+ "kuairand|model=lightgcn,layers=3,dim=64,lr=0.001,reg=0.0001,epochs=100|seed=1": {
+  "dataset": "kuairand",
+  "phase": "grid",
+  "cfg": {
+   "model": "lightgcn",
+   "layers": 3,
+   "dim": 64,
+   "lr": 0.001,
+   "reg": 0.0001,
+   "batch": 2048,
+   "epochs": 100,
+   "threads": 2
+  },
+  "seed": 1,
+  "val_recall": 0.19881791782970595,
+  "best_epoch": 100,
+  "train_time": 4401.374033689499,
+  "test": {
+   "recall": 0.20647942445481304,
+   "ndcg": 0.13726578770173306,
+   "coverage": 0.37877528401219174,
+   "popularity": 999.5333080306746
+  },
+  "test_unbiased": {
+   "recall": 0.006286153498741688,
+   "ndcg": 0.004140960720458759,
+   "coverage": 0.35827098919368244,
+   "popularity": 1000.8987659772251
+  },
+  "test_exposed": {
+   "gauc": 0.6179290108138744,
+   "ndcg": 0.4089065205761937,
+   "k": 5,
+   "users_gauc": 21508,
+   "users_ndcg": 21515
+  },
+  "epochs_run": 100
+ }
+}

@@ -1,4 +1,5 @@
-"""Parameter grids for notebooks 03 (BPR-MF) and 04 (LightGCN), cached in results/ per dataset.
+"""Parameter grids for notebooks 03 (BPR-MF) and 04 (LightGCN), and the 3-seed runs of notebooks 05 (ablation)
+and 06 (main comparison), cached in results/ per dataset.
 
 Each finished run is stored under a key of dataset, config and seed; rerunning skips finished keys, so an
 interrupted grid resumes where it stopped and several machines can each run their own dataset file.
@@ -6,6 +7,7 @@ Selection uses validation Recall@20 only; the unbiased test is never looked at (
 
 Standalone use from the project root (e.g. under nohup, to fill the cache without a notebook):
     python src/experiments/run_grid.py 03 kuairand 03 kuairec --threads=8
+    python src/experiments/run_grid.py 06 kuairand 05 kuairand --seeds=0,1,2 --shard=0/4 --threads=2
 """
 import glob
 import json
@@ -33,7 +35,21 @@ GRIDS = {
 SENSITIVITY = {"04": [dict(model="lightgcn", layers=k, dim=d, lr=5e-3, reg=r, **SHARED)
                       for k in (2, 3) for d in (64, 128) for r in (1e-5, 1e-4)]}
 LAYER_STUDY = (0, 1, 4)  # completes the curve 0-4; layers 2 and 3 are already in the grid
-FILES = {"03": "03_mf_parameters_{ds}.json", "04": "04_lightgcn_parameters_{ds}.json"}
+# Notebooks 05/06: the validation selections of notebooks 03 (BPR-MF) and 04 (LightGCN), per dataset.
+SELECTED = {
+    "kuairand": dict(mf=dict(model="mf", dim=64, lr=1e-3, reg=1e-3, **SHARED),
+                     lightgcn=dict(model="lightgcn", layers=3, dim=128, lr=1e-3, reg=1e-4, **SHARED)),
+    "kuairec": dict(mf=dict(model="mf", dim=64, lr=3e-4, reg=1e-4, **SHARED),
+                    lightgcn=dict(model="lightgcn", layers=3, dim=128, lr=1e-3, reg=1e-4, **SHARED)),
+}
+# Fairness rule 3 control: LightGCN at BPR-MF's dim=64 (best dim-64 grid config of notebook 04 on both datasets).
+LIGHTGCN_DIM64 = dict(model="lightgcn", layers=3, dim=64, lr=1e-3, reg=1e-4, **SHARED)
+# Notebook 05: one change at a time from the selected LightGCN; its baseline is notebook 06's LightGCN run.
+ABLATIONS = {"last_layer": dict(combine="last"), "no_norm": dict(norm="none"), "edge_drop": dict(edge_drop=0.1)}
+GRIDS["06"] = {ds: [s["mf"], s["lightgcn"], LIGHTGCN_DIM64] for ds, s in SELECTED.items()}
+GRIDS["05"] = {ds: [dict(s["lightgcn"], **a) for a in ABLATIONS.values()] for ds, s in SELECTED.items()}
+FILES = {"03": "03_mf_parameters_{ds}.json", "04": "04_lightgcn_parameters_{ds}.json",
+         "05": "05_ablation_{ds}.json", "06": "06_main_comparison_{ds}.json"}
 
 _DS = {}
 
@@ -70,7 +86,8 @@ def merge_runs(notebook, datasets):
 
 
 def _key(dataset, cfg, seed):
-    parts = ",".join(f"{k}={cfg[k]}" for k in ("model", "layers", "dim", "lr", "reg", "epochs") if k in cfg)
+    parts = ",".join(f"{k}={cfg[k]}" for k in ("model", "layers", "dim", "lr", "reg", "epochs", "combine", "norm", "edge_drop")
+                     if k in cfg)
     return f"{dataset}|{parts}|seed={seed}"
 
 
@@ -84,7 +101,8 @@ def _run_one(runs, notebook, dataset, cfg, seed, phase, eval_every, threads, out
     res, _, _, _ = training.fit(cfg, _dataset(dataset, seed), seed=seed, eval_every=eval_every)
     runs[key] = dict(dataset=dataset, phase=phase, cfg=res["cfg"], seed=seed,
                      val_recall=res["val_recall"], best_epoch=res["best_epoch"], train_time=res["train_time"],
-                     test=res["test"], test_unbiased=res.get("test_unbiased"))
+                     test=res["test"], test_unbiased=res.get("test_unbiased"), test_exposed=res.get("test_exposed"),
+                     epochs_run=len(res["history"]))
     with open(out_path, "w") as f:
         json.dump(runs, f, indent=1)
     unb = (res.get("test_unbiased") or {}).get("recall")
@@ -98,13 +116,15 @@ def run_grid(notebook, dataset, seeds=(0,), grid=None, eval_every=5, threads=8, 
     is effectively single-threaded, so several shard processes use the cores of one machine properly."""
     runs = load_runs(notebook, dataset)
     cfgs = grid or GRIDS[notebook]
+    if isinstance(cfgs, dict):  # notebooks 05/06 have per-dataset configs
+        cfgs = cfgs[dataset]
+    jobs = [(cfg, seed) for cfg in cfgs for seed in seeds]
     out = _runs_path(notebook, dataset)
     if shard is not None:
         i, n = (int(x) for x in shard.split("/"))
-        cfgs, out = cfgs[i::n], out.replace(".json", f".shard{i}.json")
-    for cfg in cfgs:
-        for seed in seeds:
-            _run_one(runs, notebook, dataset, cfg, seed, "grid", eval_every, threads, out, device)
+        jobs, out = jobs[i::n], out.replace(".json", f".shard{i}.json")
+    for cfg, seed in jobs:
+        _run_one(runs, notebook, dataset, cfg, seed, "grid", eval_every, threads, out, device)
     if shard is None:  # sensitivity runs are not selection budget and stay out of the shards
         for cfg in SENSITIVITY.get(notebook, []):
             for seed in seeds:
@@ -148,10 +168,12 @@ def layer_curve(dataset, seed=0):
 
 def main(argv):
     """Usage: python src/experiments/run_grid.py 03 kuairand 04 kuairand [--threads=8] [--shard=i/n] [--device=cuda]
-    Shard processes run grid slices only; run without --shard afterwards to add the 04 layer study."""
-    threads, shard, device, pairs = 8, None, None, []
+    [--seeds=0,1,2]. Shard processes run grid slices only; run without --shard afterwards to add the 04 layer study."""
+    threads, shard, device, seeds, pairs = 8, None, None, (0,), []
     for a in argv[1:]:
-        if a.startswith("--threads="):
+        if a.startswith("--seeds="):
+            seeds = tuple(int(x) for x in a.split("=")[1].split(","))
+        elif a.startswith("--threads="):
             threads = int(a.split("=")[1])
         elif a.startswith("--shard="):
             shard = a.split("=")[1]
@@ -160,7 +182,7 @@ def main(argv):
         else:
             pairs.append(a)
     for notebook, dataset in zip(pairs[0::2], pairs[1::2]):
-        run_grid(notebook, dataset, threads=threads, shard=shard, device=device)
+        run_grid(notebook, dataset, seeds=seeds, threads=threads, shard=shard, device=device)
         if notebook == "04" and shard is None:
             run_layers(dataset, threads=threads, device=device)
 
