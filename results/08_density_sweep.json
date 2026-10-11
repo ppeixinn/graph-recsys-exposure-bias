@@ -116,6 +116,179 @@
       "gauc_warm": 0.6191292283871106,
       "gauc_cold": null
     },
+    "kuairand|core=10|lightgcn|seed=0": {
+      "dataset": "kuairand",
+      "variant": "core=10",
+      "model": "lightgcn",
+      "seed": 0,
+      "cfg": {
+        "model": "lightgcn",
+        "layers": 3,
+        "dim": 128,
+        "lr": 0.001,
+        "reg": 0.0001,
+        "batch": 2048,
+        "epochs": 100,
+        "threads": 4
+      },
+      "stats": {
+        "name": "KuaiRand-Pure (is_click) [10-core]",
+        "users": 15592,
+        "items": 3999,
+        "train": 405479,
+        "val": 44595,
+        "test": 112126,
+        "test_unbiased": 91987,
+        "density": 0.006503020701301544,
+        "cold_users": 0,
+        "cold_items": 0,
+        "train_users": 15592,
+        "train_items": 3999,
+        "cold_users_unbiased": 0
+      },
+      "val_recall": 0.21585489497579183,
+      "best_epoch": 100,
+      "epochs_run": 100,
+      "train_time": 6386.226249217987,
+      "test": {
+        "recall": 0.22347574027043593,
+        "ndcg": 0.17330910070592945,
+        "coverage": 0.5703925981495374,
+        "popularity": 878.471956772704
+      },
+      "test_unbiased": {
+        "recall": 0.00812546372479622,
+        "ndcg": 0.004930213810972105,
+        "coverage": 0.5526381595398849,
+        "popularity": 862.5362048479087
+      },
+      "test_exposed": {
+        "gauc": 0.6315156695540632,
+        "ndcg": 0.5152201336157647,
+        "k": 5,
+        "users_gauc": 12597,
+        "users_ndcg": 12624
+      },
+      "recall_warm": 0.22347574027043593,
+      "recall_cold": null,
+      "gauc_warm": 0.6315156695540632,
+      "gauc_cold": null
+    },
+    "kuairand|core=5|mf|seed=0": {
+      "dataset": "kuairand",
+      "variant": "core=5",
+      "model": "mf",
+      "seed": 0,
+      "cfg": {
+        "model": "mf",
+        "dim": 64,
+        "lr": 0.001,
+        "reg": 0.001,
+        "batch": 2048,
+        "epochs": 100,
+        "threads": 4
+      },
+      "stats": {
+        "name": "KuaiRand-Pure (is_click) [5-core]",
+        "users": 20952,
+        "items": 5301,
+        "train": 451214,
+        "val": 50754,
+        "test": 125143,
+        "test_unbiased": 137731,
+        "density": 0.004062555214642839,
+        "cold_users": 0,
+        "cold_items": 0,
+        "train_users": 20952,
+        "train_items": 5301,
+        "cold_users_unbiased": 0
+      },
+      "val_recall": 0.1695620789153014,
+      "best_epoch": 100,
+      "epochs_run": 100,
+      "train_time": 830.2719857692719,
+      "test": {
+        "recall": 0.17434203546756905,
+        "ndcg": 0.12116676611757299,
+        "coverage": 0.7008111677042067,
+        "popularity": 777.6429960345898
+      },
+      "test_unbiased": {
+        "recall": 0.00687101582302381,
+        "ndcg": 0.004418325860394727,
+        "coverage": 0.676098849273722,
+        "popularity": 778.1793246617502
+      },
+      "test_exposed": {
+        "gauc": 0.6147226955546617,
+        "ndcg": 0.4484360777999887,
+        "k": 5,
+        "users_gauc": 17211,
+        "users_ndcg": 17221
+      },
+      "recall_warm": 0.17434203546756905,
+      "recall_cold": null,
+      "gauc_warm": 0.6147226955546616,
+      "gauc_cold": null
+    },
+    "kuairand|core=5|lightgcn|seed=0": {
+      "dataset": "kuairand",
+      "variant": "core=5",
+      "model": "lightgcn",
+      "seed": 0,
+      "cfg": {
+        "model": "lightgcn",
+        "layers": 3,
+        "dim": 128,
+        "lr": 0.001,
+        "reg": 0.0001,
+        "batch": 2048,
+        "epochs": 100,
+        "threads": 4
+      },
+      "stats": {
+        "name": "KuaiRand-Pure (is_click) [5-core]",
+        "users": 20952,
+        "items": 5301,
+        "train": 451214,
+        "val": 50754,
+        "test": 125143,
+        "test_unbiased": 137731,
+        "density": 0.004062555214642839,
+        "cold_users": 0,
+        "cold_items": 0,
+        "train_users": 20952,
+        "train_items": 5301,
+        "cold_users_unbiased": 0
+      },
+      "val_recall": 0.2167005916853607,
+      "best_epoch": 100,
+      "epochs_run": 100,
+      "train_time": 5641.6967849731445,
+      "test": {
+        "recall": 0.22618771737994775,
+        "ndcg": 0.16100565045533852,
+        "coverage": 0.5268817204301075,
+        "popularity": 928.1883737040753
+      },
+      "test_unbiased": {
+        "recall": 0.007379810115872396,
+        "ndcg": 0.004593600939440454,
+        "coverage": 0.509715148085267,
+        "popularity": 919.0386708088961
+      },
+      "test_exposed": {
+        "gauc": 0.6260095623886015,
+        "ndcg": 0.4628874501789299,
+        "k": 5,
+        "users_gauc": 17211,
+        "users_ndcg": 17221
+      },
+      "recall_warm": 0.2261877173799478,
+      "recall_cold": null,
+      "gauc_warm": 0.6260095623886015,
+      "gauc_cold": null
+    },
     "kuairand|keep=0.1|mf|seed=0": {
       "dataset": "kuairand",
       "variant": "keep=0.1",
@@ -631,6 +804,179 @@
       "recall_warm": 0.10737776593828723,
       "recall_cold": null,
       "gauc_warm": 0.7445321938228708,
+      "gauc_cold": null
+    },
+    "kuairec|core=10|lightgcn|seed=0": {
+      "dataset": "kuairec",
+      "variant": "core=10",
+      "model": "lightgcn",
+      "seed": 0,
+      "cfg": {
+        "model": "lightgcn",
+        "layers": 3,
+        "dim": 128,
+        "lr": 0.001,
+        "reg": 0.0001,
+        "batch": 2048,
+        "epochs": 100,
+        "threads": 4
+      },
+      "stats": {
+        "name": "KuaiRec (watch_ratio >= 2) [10-core]",
+        "users": 6910,
+        "items": 5290,
+        "train": 592396,
+        "val": 65512,
+        "test": 163987,
+        "test_unbiased": 200539,
+        "density": 0.016206095656003873,
+        "cold_users": 0,
+        "cold_items": 0,
+        "train_users": 6910,
+        "train_items": 5290,
+        "cold_users_unbiased": 0
+      },
+      "val_recall": 0.12702023760016823,
+      "best_epoch": 70,
+      "epochs_run": 90,
+      "train_time": 6422.276630163193,
+      "test": {
+        "recall": 0.12539886722322213,
+        "ndcg": 0.1391299123748391,
+        "coverage": 0.39092627599243857,
+        "popularity": 640.1099218410768
+      },
+      "test_unbiased": {
+        "recall": 0.14369447050449435,
+        "ndcg": 0.46272433292009824,
+        "coverage": 0.32549903412749515,
+        "popularity": 709.1210771840542
+      },
+      "test_exposed": {
+        "gauc": 0.706115595831974,
+        "ndcg": 0.5104325885813635,
+        "k": 5,
+        "users_gauc": 1179,
+        "users_ndcg": 1179
+      },
+      "recall_warm": 0.12539886722322213,
+      "recall_cold": null,
+      "gauc_warm": 0.706115595831974,
+      "gauc_cold": null
+    },
+    "kuairec|core=5|mf|seed=0": {
+      "dataset": "kuairec",
+      "variant": "core=5",
+      "model": "mf",
+      "seed": 0,
+      "cfg": {
+        "model": "mf",
+        "dim": 64,
+        "lr": 0.0003,
+        "reg": 0.0001,
+        "batch": 2048,
+        "epochs": 100,
+        "threads": 4
+      },
+      "stats": {
+        "name": "KuaiRec (watch_ratio >= 2) [5-core]",
+        "users": 7111,
+        "items": 6575,
+        "train": 602417,
+        "val": 66685,
+        "test": 166852,
+        "test_unbiased": 212964,
+        "density": 0.012884595333208926,
+        "cold_users": 0,
+        "cold_items": 0,
+        "train_users": 7111,
+        "train_items": 6575,
+        "cold_users_unbiased": 0
+      },
+      "val_recall": 0.10627611535318444,
+      "best_epoch": 35,
+      "epochs_run": 55,
+      "train_time": 460.988924741745,
+      "test": {
+        "recall": 0.1056050842764654,
+        "ndcg": 0.112746768833171,
+        "coverage": 0.15695817490494296,
+        "popularity": 800.369427647307
+      },
+      "test_unbiased": {
+        "recall": 0.17031379264302754,
+        "ndcg": 0.582804877540601,
+        "coverage": 0.13632119514472454,
+        "popularity": 1048.9397853441894
+      },
+      "test_exposed": {
+        "gauc": 0.7631785825731069,
+        "ndcg": 0.6404812558985151,
+        "k": 5,
+        "users_gauc": 1351,
+        "users_ndcg": 1351
+      },
+      "recall_warm": 0.1056050842764654,
+      "recall_cold": null,
+      "gauc_warm": 0.7631785825731069,
+      "gauc_cold": null
+    },
+    "kuairec|core=5|lightgcn|seed=0": {
+      "dataset": "kuairec",
+      "variant": "core=5",
+      "model": "lightgcn",
+      "seed": 0,
+      "cfg": {
+        "model": "lightgcn",
+        "layers": 3,
+        "dim": 128,
+        "lr": 0.001,
+        "reg": 0.0001,
+        "batch": 2048,
+        "epochs": 100,
+        "threads": 4
+      },
+      "stats": {
+        "name": "KuaiRec (watch_ratio >= 2) [5-core]",
+        "users": 7111,
+        "items": 6575,
+        "train": 602417,
+        "val": 66685,
+        "test": 166852,
+        "test_unbiased": 212964,
+        "density": 0.012884595333208926,
+        "cold_users": 0,
+        "cold_items": 0,
+        "train_users": 7111,
+        "train_items": 6575,
+        "cold_users_unbiased": 0
+      },
+      "val_recall": 0.12828689011235617,
+      "best_epoch": 80,
+      "epochs_run": 100,
+      "train_time": 5068.387152194977,
+      "test": {
+        "recall": 0.1262949175989549,
+        "ndcg": 0.13818916844123572,
+        "coverage": 0.3662357414448669,
+        "popularity": 639.8406975108986
+      },
+      "test_unbiased": {
+        "recall": 0.1538049490811208,
+        "ndcg": 0.46352594392263424,
+        "coverage": 0.388422035480859,
+        "popularity": 733.4527017024426
+      },
+      "test_exposed": {
+        "gauc": 0.717305411587305,
+        "ndcg": 0.5246752939906086,
+        "k": 5,
+        "users_gauc": 1351,
+        "users_ndcg": 1351
+      },
+      "recall_warm": 0.1262949175989549,
+      "recall_cold": null,
+      "gauc_warm": 0.717305411587305,
       "gauc_cold": null
     },
     "kuairec|keep=0.1|mf|seed=0": {
