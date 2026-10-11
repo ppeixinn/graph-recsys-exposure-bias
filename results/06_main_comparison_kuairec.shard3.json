@@ -1,0 +1,190 @@
+{
+ "kuairec|model=mf,dim=64,lr=0.0003,reg=0.0001,epochs=100|seed=2": {
+  "dataset": "kuairec",
+  "phase": "grid",
+  "cfg": {
+   "model": "mf",
+   "dim": 64,
+   "lr": 0.0003,
+   "reg": 0.0001,
+   "batch": 2048,
+   "epochs": 100,
+   "threads": 2
+  },
+  "seed": 2,
+  "val_recall": 0.10440176585604843,
+  "best_epoch": 45,
+  "train_time": 288.7478790283203,
+  "test": {
+   "recall": 0.10968017566160426,
+   "ndcg": 0.11518203200911914,
+   "coverage": 0.0833097728772029,
+   "popularity": 792.6792625121985
+  },
+  "test_unbiased": {
+   "recall": 0.17832774731257117,
+   "ndcg": 0.5853606751890373,
+   "coverage": 0.06945279615153338,
+   "popularity": 1061.8338068181818
+  },
+  "test_exposed": {
+   "gauc": 0.7796583320387508,
+   "ndcg": 0.6476935591166814,
+   "k": 5,
+   "users_gauc": 1408,
+   "users_ndcg": 1408
+  },
+  "epochs_run": 65
+ },
+ "kuairec|model=mf,dim=64,lr=0.0003,reg=0.0001,epochs=100|seed=1": {
+  "dataset": "kuairec",
+  "phase": "grid",
+  "cfg": {
+   "model": "mf",
+   "dim": 64,
+   "lr": 0.0003,
+   "reg": 0.0001,
+   "batch": 2048,
+   "epochs": 100,
+   "threads": 2
+  },
+  "seed": 1,
+  "val_recall": 0.10369076441431703,
+  "best_epoch": 65,
+  "train_time": 264.80471181869507,
+  "test": {
+   "recall": 0.10507407859050356,
+   "ndcg": 0.1126643547468829,
+   "coverage": 0.13278673075110733,
+   "popularity": 735.8792694827827
+  },
+  "test_unbiased": {
+   "recall": 0.17592412440182317,
+   "ndcg": 0.5740945153691844,
+   "coverage": 0.10132291040288635,
+   "popularity": 1047.6410866477272
+  },
+  "test_exposed": {
+   "gauc": 0.7754379649646072,
+   "ndcg": 0.6328835038018398,
+   "k": 5,
+   "users_gauc": 1408,
+   "users_ndcg": 1408
+  },
+  "epochs_run": 85
+ },
+ "kuairec|model=lightgcn,layers=3,dim=64,lr=0.001,reg=0.0001,epochs=100|seed=0": {
+  "dataset": "kuairec",
+  "phase": "grid",
+  "cfg": {
+   "model": "lightgcn",
+   "layers": 3,
+   "dim": 64,
+   "lr": 0.001,
+   "reg": 0.0001,
+   "batch": 2048,
+   "epochs": 100,
+   "threads": 2
+  },
+  "seed": 0,
+  "val_recall": 0.12579039978170195,
+  "best_epoch": 100,
+  "train_time": 6162.127376794815,
+  "test": {
+   "recall": 0.12340487817860679,
+   "ndcg": 0.13400556946806663,
+   "coverage": 0.1782112901705777,
+   "popularity": 676.9843928621218
+  },
+  "test_unbiased": {
+   "recall": 0.16996257193027903,
+   "ndcg": 0.523274962785559,
+   "coverage": 0.24684305472038484,
+   "popularity": 872.613671875
+  },
+  "test_exposed": {
+   "gauc": 0.7382958748778479,
+   "ndcg": 0.5881520362165413,
+   "k": 5,
+   "users_gauc": 1408,
+   "users_ndcg": 1408
+  },
+  "epochs_run": 100
+ },
+ "kuairec|model=lightgcn,layers=3,dim=128,lr=0.001,reg=0.0001,epochs=100|seed=0": {
+  "dataset": "kuairec",
+  "phase": "grid",
+  "cfg": {
+   "model": "lightgcn",
+   "layers": 3,
+   "dim": 128,
+   "lr": 0.001,
+   "reg": 0.0001,
+   "batch": 2048,
+   "epochs": 100,
+   "threads": 2
+  },
+  "seed": 0,
+  "val_recall": 0.12786897660183072,
+  "best_epoch": 100,
+  "train_time": 9047.897490978241,
+  "test": {
+   "recall": 0.12549144923070632,
+   "ndcg": 0.13606769603242777,
+   "coverage": 0.26953161813212706,
+   "popularity": 641.9449463265022
+  },
+  "test_unbiased": {
+   "recall": 0.16336964770024287,
+   "ndcg": 0.4895521368637539,
+   "coverage": 0.4332531569452796,
+   "popularity": 793.293359375
+  },
+  "test_exposed": {
+   "gauc": 0.7333340382761491,
+   "ndcg": 0.5516695470702611,
+   "k": 5,
+   "users_gauc": 1408,
+   "users_ndcg": 1408
+  },
+  "epochs_run": 100
+ },
+ "kuairec|model=lightgcn,layers=3,dim=64,lr=0.001,reg=0.0001,epochs=100|seed=1": {
+  "dataset": "kuairec",
+  "phase": "grid",
+  "cfg": {
+   "model": "lightgcn",
+   "layers": 3,
+   "dim": 64,
+   "lr": 0.001,
+   "reg": 0.0001,
+   "batch": 2048,
+   "epochs": 100,
+   "threads": 2
+  },
+  "seed": 1,
+  "val_recall": 0.12069041160526134,
+  "best_epoch": 95,
+  "train_time": 3793.135724067688,
+  "test": {
+   "recall": 0.12298584571609898,
+   "ndcg": 0.133371327732294,
+   "coverage": 0.16294411459805863,
+   "popularity": 687.251184999303
+  },
+  "test_unbiased": {
+   "recall": 0.17042587808278056,
+   "ndcg": 0.5248693948497052,
+   "coverage": 0.20144317498496692,
+   "popularity": 890.6147017045455
+  },
+  "test_exposed": {
+   "gauc": 0.7413263206717499,
+   "ndcg": 0.5838973294450699,
+   "k": 5,
+   "users_gauc": 1408,
+   "users_ndcg": 1408
+  },
+  "epochs_run": 100
+ }
+}

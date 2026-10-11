@@ -1,0 +1,115 @@
+{
+ "kuairand|model=mf,dim=64,lr=0.001,reg=0.001,epochs=100|seed=0": {
+  "dataset": "kuairand",
+  "phase": "grid",
+  "cfg": {
+   "model": "mf",
+   "dim": 64,
+   "lr": 0.001,
+   "reg": 0.001,
+   "batch": 2048,
+   "epochs": 100,
+   "threads": 2
+  },
+  "seed": 0,
+  "val_recall": 0.1673032673600497,
+  "best_epoch": 100,
+  "train_time": 480.6161079406738,
+  "test": {
+   "recall": 0.1693384983738508,
+   "ndcg": 0.11020125354318475,
+   "coverage": 0.6163757273482959,
+   "popularity": 820.1632663786056
+  },
+  "test_unbiased": {
+   "recall": 0.006032719783111033,
+   "ndcg": 0.0040803849255994715,
+   "coverage": 0.5854807425879746,
+   "popularity": 824.2936323495236
+  },
+  "test_exposed": {
+   "gauc": 0.6123110607467293,
+   "ndcg": 0.3994718285477486,
+   "k": 5,
+   "users_gauc": 21508,
+   "users_ndcg": 21515
+  },
+  "epochs_run": 100
+ },
+ "kuairand|model=lightgcn,layers=3,dim=128,lr=0.001,reg=0.0001,epochs=100|seed=1": {
+  "dataset": "kuairand",
+  "phase": "grid",
+  "cfg": {
+   "model": "lightgcn",
+   "layers": 3,
+   "dim": 128,
+   "lr": 0.001,
+   "reg": 0.0001,
+   "batch": 2048,
+   "epochs": 100,
+   "threads": 2
+  },
+  "seed": 1,
+  "val_recall": 0.21070961681703837,
+  "best_epoch": 100,
+  "train_time": 9713.759868860245,
+  "test": {
+   "recall": 0.2182848912625793,
+   "ndcg": 0.14605113584093282,
+   "coverage": 0.5080354668883347,
+   "popularity": 907.4417727431975
+  },
+  "test_unbiased": {
+   "recall": 0.005986095552717461,
+   "ndcg": 0.003949609097541199,
+   "coverage": 0.4861457467442505,
+   "popularity": 907.3487985126656
+  },
+  "test_exposed": {
+   "gauc": 0.6152208433414936,
+   "ndcg": 0.4072840715603138,
+   "k": 5,
+   "users_gauc": 21508,
+   "users_ndcg": 21515
+  },
+  "epochs_run": 100
+ },
+ "kuairand|model=lightgcn,layers=3,dim=64,lr=0.001,reg=0.0001,epochs=100|seed=2": {
+  "dataset": "kuairand",
+  "phase": "grid",
+  "cfg": {
+   "model": "lightgcn",
+   "layers": 3,
+   "dim": 64,
+   "lr": 0.001,
+   "reg": 0.0001,
+   "batch": 2048,
+   "epochs": 100,
+   "threads": 2
+  },
+  "seed": 2,
+  "val_recall": 0.20186313773853204,
+  "best_epoch": 100,
+  "train_time": 4272.789947271347,
+  "test": {
+   "recall": 0.20033154700297023,
+   "ndcg": 0.13451905427718902,
+   "coverage": 0.3624272651704073,
+   "popularity": 1005.2942368328856
+  },
+  "test_unbiased": {
+   "recall": 0.006183026640491206,
+   "ndcg": 0.004088865791778978,
+   "coverage": 0.3494042671100028,
+   "popularity": 1006.587083430165
+  },
+  "test_exposed": {
+   "gauc": 0.6188176066483096,
+   "ndcg": 0.4081951229840809,
+   "k": 5,
+   "users_gauc": 21508,
+   "users_ndcg": 21515
+  },
+  "epochs_run": 100
+ }
+}

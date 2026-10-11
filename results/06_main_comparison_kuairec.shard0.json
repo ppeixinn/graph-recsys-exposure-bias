@@ -1,0 +1,227 @@
+{
+ "kuairec|model=mf,dim=64,lr=0.0003,reg=0.0001,epochs=100|seed=2": {
+  "dataset": "kuairec",
+  "phase": "grid",
+  "cfg": {
+   "model": "mf",
+   "dim": 64,
+   "lr": 0.0003,
+   "reg": 0.0001,
+   "batch": 2048,
+   "epochs": 100,
+   "threads": 2
+  },
+  "seed": 2,
+  "val_recall": 0.10440176585604843,
+  "best_epoch": 45,
+  "train_time": 288.7478790283203,
+  "test": {
+   "recall": 0.10968017566160426,
+   "ndcg": 0.11518203200911914,
+   "coverage": 0.0833097728772029,
+   "popularity": 792.6792625121985
+  },
+  "test_unbiased": {
+   "recall": 0.17832774731257117,
+   "ndcg": 0.5853606751890373,
+   "coverage": 0.06945279615153338,
+   "popularity": 1061.8338068181818
+  },
+  "test_exposed": {
+   "gauc": 0.7796583320387508,
+   "ndcg": 0.6476935591166814,
+   "k": 5,
+   "users_gauc": 1408,
+   "users_ndcg": 1408
+  },
+  "epochs_run": 65
+ },
+ "kuairec|model=mf,dim=64,lr=0.0003,reg=0.0001,epochs=100|seed=1": {
+  "dataset": "kuairec",
+  "phase": "grid",
+  "cfg": {
+   "model": "mf",
+   "dim": 64,
+   "lr": 0.0003,
+   "reg": 0.0001,
+   "batch": 2048,
+   "epochs": 100,
+   "threads": 2
+  },
+  "seed": 1,
+  "val_recall": 0.10369076441431703,
+  "best_epoch": 65,
+  "train_time": 264.80471181869507,
+  "test": {
+   "recall": 0.10507407859050356,
+   "ndcg": 0.1126643547468829,
+   "coverage": 0.13278673075110733,
+   "popularity": 735.8792694827827
+  },
+  "test_unbiased": {
+   "recall": 0.17592412440182317,
+   "ndcg": 0.5740945153691844,
+   "coverage": 0.10132291040288635,
+   "popularity": 1047.6410866477272
+  },
+  "test_exposed": {
+   "gauc": 0.7754379649646072,
+   "ndcg": 0.6328835038018398,
+   "k": 5,
+   "users_gauc": 1408,
+   "users_ndcg": 1408
+  },
+  "epochs_run": 85
+ },
+ "kuairec|model=lightgcn,layers=3,dim=64,lr=0.001,reg=0.0001,epochs=100|seed=0": {
+  "dataset": "kuairec",
+  "phase": "grid",
+  "cfg": {
+   "model": "lightgcn",
+   "layers": 3,
+   "dim": 64,
+   "lr": 0.001,
+   "reg": 0.0001,
+   "batch": 2048,
+   "epochs": 100,
+   "threads": 2
+  },
+  "seed": 0,
+  "val_recall": 0.12579039978170195,
+  "best_epoch": 100,
+  "train_time": 6162.127376794815,
+  "test": {
+   "recall": 0.12340487817860679,
+   "ndcg": 0.13400556946806663,
+   "coverage": 0.1782112901705777,
+   "popularity": 676.9843928621218
+  },
+  "test_unbiased": {
+   "recall": 0.16996257193027903,
+   "ndcg": 0.523274962785559,
+   "coverage": 0.24684305472038484,
+   "popularity": 872.613671875
+  },
+  "test_exposed": {
+   "gauc": 0.7382958748778479,
+   "ndcg": 0.5881520362165413,
+   "k": 5,
+   "users_gauc": 1408,
+   "users_ndcg": 1408
+  },
+  "epochs_run": 100
+ },
+ "kuairec|model=mf,dim=64,lr=0.0003,reg=0.0001,epochs=100|seed=0": {
+  "dataset": "kuairec",
+  "phase": "grid",
+  "cfg": {
+   "model": "mf",
+   "dim": 64,
+   "lr": 0.0003,
+   "reg": 0.0001,
+   "batch": 2048,
+   "epochs": 100,
+   "threads": 2
+  },
+  "seed": 0,
+  "val_recall": 0.1084205505968868,
+  "best_epoch": 75,
+  "train_time": 196.00045680999756,
+  "test": {
+   "recall": 0.10659029393220751,
+   "ndcg": 0.11449717020228534,
+   "coverage": 0.16841014042031854,
+   "popularity": 707.1035898508295
+  },
+  "test_unbiased": {
+   "recall": 0.17312778102125598,
+   "ndcg": 0.5630712013480147,
+   "coverage": 0.13138905592303066,
+   "popularity": 1027.5854048295455
+  },
+  "test_exposed": {
+   "gauc": 0.7721113110896135,
+   "ndcg": 0.6067661955775341,
+   "k": 5,
+   "users_gauc": 1408,
+   "users_ndcg": 1408
+  },
+  "epochs_run": 95
+ },
+ "kuairec|model=lightgcn,layers=3,dim=128,lr=0.001,reg=0.0001,epochs=100|seed=1": {
+  "dataset": "kuairec",
+  "phase": "grid",
+  "cfg": {
+   "model": "lightgcn",
+   "layers": 3,
+   "dim": 128,
+   "lr": 0.001,
+   "reg": 0.0001,
+   "batch": 2048,
+   "epochs": 100,
+   "threads": 2
+  },
+  "seed": 1,
+  "val_recall": 0.12681119402355356,
+  "best_epoch": 95,
+  "train_time": 8909.159814834595,
+  "test": {
+   "recall": 0.1260511780659877,
+   "ndcg": 0.13698855341829283,
+   "coverage": 0.2545471680331731,
+   "popularity": 648.6666736372508
+  },
+  "test_unbiased": {
+   "recall": 0.16106921539783647,
+   "ndcg": 0.4873560954718176,
+   "coverage": 0.40859891761876127,
+   "popularity": 798.3674360795454
+  },
+  "test_exposed": {
+   "gauc": 0.7351102288576993,
+   "ndcg": 0.5469415474403749,
+   "k": 5,
+   "users_gauc": 1408,
+   "users_ndcg": 1408
+  },
+  "epochs_run": 100
+ },
+ "kuairec|model=lightgcn,layers=3,dim=64,lr=0.001,reg=0.0001,epochs=100|seed=2": {
+  "dataset": "kuairec",
+  "phase": "grid",
+  "cfg": {
+   "model": "lightgcn",
+   "layers": 3,
+   "dim": 64,
+   "lr": 0.001,
+   "reg": 0.0001,
+   "batch": 2048,
+   "epochs": 100,
+   "threads": 2
+  },
+  "seed": 2,
+  "val_recall": 0.12379303355040101,
+  "best_epoch": 100,
+  "train_time": 3772.68855881691,
+  "test": {
+   "recall": 0.12917489065380813,
+   "ndcg": 0.13644403878897726,
+   "coverage": 0.17642069550466496,
+   "popularity": 678.0631325805102
+  },
+  "test_unbiased": {
+   "recall": 0.17055271281677573,
+   "ndcg": 0.5294754811016962,
+   "coverage": 0.2507516536380036,
+   "popularity": 884.3892755681818
+  },
+  "test_exposed": {
+   "gauc": 0.7397836086537695,
+   "ndcg": 0.5929807929848061,
+   "k": 5,
+   "users_gauc": 1408,
+   "users_ndcg": 1408
+  },
+  "epochs_run": 100
+ }
+}
