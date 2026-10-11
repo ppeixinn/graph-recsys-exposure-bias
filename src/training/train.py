@@ -3,6 +3,7 @@ import time
 import numpy as np
 import torch
 
+from algorithms import popularity_weights, sample as sample_negatives
 from data import to_pairs
 from inference import evaluate, evaluate_exposed
 from models import MF, LightGCN
@@ -27,6 +28,7 @@ def fit(cfg, ds, seed=0, verbose=False, eval_every=5, patience=4):
     train_sets = {u: set(v.tolist()) for u, v in ds["train"].items()}
     opt = torch.optim.Adam(model.parameters(), lr=cfg.get("lr", 1e-3))
     reg, bs, edge_drop = cfg.get("reg", 1e-4), cfg.get("batch", 2048), cfg.get("edge_drop", 0.0)
+    neg_cum = popularity_weights(ds, cfg.get("neg_alpha", 0.0))  # None keeps uniform BPR negatives
     model.set_graph(pairs, 0.0, rng)
     best = dict(val=-1, epoch=0, state=None)
     hist, t0, bad = [], time.time(), 0
@@ -39,10 +41,13 @@ def fit(cfg, ds, seed=0, verbose=False, eval_every=5, patience=4):
         for s in range(0, len(pairs), bs):
             b = pairs[perm[s:s + bs]]
             u, pos = b[:, 0], b[:, 1]
-            neg = rng.randint(0, n_items, size=len(b))
+            if neg_cum is None:
+                neg = rng.randint(0, n_items, size=len(b))
+            else:  # popularity-aware: oversample popular items as negatives
+                neg = sample_negatives(neg_cum, rng, len(b))
             for j in range(len(b)):  # resample negatives that are actually positives
                 while neg[j] in train_sets[u[j]]:
-                    neg[j] = rng.randint(0, n_items)
+                    neg[j] = rng.randint(0, n_items) if neg_cum is None else sample_negatives(neg_cum, rng, 1)[0]
             u, pos, neg = (torch.from_numpy(x).to(dev) for x in (u, pos, neg))
             U, I = model.embeddings()
             eu, ep_, en = U[u], I[pos], I[neg]
