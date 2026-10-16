@@ -118,7 +118,7 @@ One package per area so each member adds files in their own folder. Notebooks pu
 Numbered, in order, one per step. Each notebook imports from `src/`, states its purpose in the first cell, and keeps its outputs saved.
 - `00_introduction.ipynb`: text only: theme, exposure bias, why BPR-MF vs. LightGCN, objectives (owner 1).
 - `01_data_exploration.ipynb`: raw data of KuaiRand-Pure and KuaiRec: files, columns, feedback signals, watch time and watch ratio, users and videos, how the unbiased parts were collected (owner 1).
-- `02_data_processing.ipynb`: positive definitions, repeated interactions, filtering, splits and unbiased test sets, split checks, degree distributions, side-by-side table, popularity of biased vs. unbiased test positives, most-popular preview; saves `data/processed/*.npz` (owner 1).
+- `02_data_processing.ipynb`: positive definitions, repeated interactions, filtering, splits and unbiased test sets, split checks, degree distributions, side-by-side table, popularity of biased vs. unbiased test positives, most-popular preview, evaluation protocol and metrics (section 6: Recall/NDCG formulas, exposure statistics, GAUC, random floors); saves `data/processed/*.npz` (owner 1).
 - `03_mf_parameters.ipynb`, `04_lightgcn_parameters.ipynb`: parameter studies on validation.
 - `05_ablation.ipynb`: component ablations.
 - `06_main_comparison.ipynb`: most-popular, MF, LightGCN on both tests of both datasets, mean ± std over seeds (headline).

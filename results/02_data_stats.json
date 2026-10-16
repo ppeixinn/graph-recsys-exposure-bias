@@ -279,5 +279,53 @@
    0.002020975697536532,
    0.0017994989087654052
   ]
+ },
+ "exposure": {
+  "kuairand": {
+   "unbiased-test users": 21515.0,
+   "shown per user: mean": 47.09058796188705,
+   "shown per user: median": 24.0,
+   "shown per user: p10": 11.0,
+   "shown per user: p90": 107.0,
+   "share of users shown 20 or fewer": 0.4335579828026958,
+   "positives per user: mean": 9.042017197304206,
+   "positives per user: median": 4.0,
+   "share of shown videos that are positive": 0.19201325760940588,
+   "users with a positive and a negative (GAUC)": 21508.0,
+   "full-ranking candidates per user: median": 7198.0,
+   "random": {
+    "Recall@20, full ranking": 0.0027811981065821952,
+    "Recall@20, shown videos": 0.6978433465306627,
+    "GAUC, shown videos": 0.5,
+    "NDCG@5, shown videos": 0.2559079924596988
+   },
+   "most_popular": {
+    "gauc": 0.5827637942217682,
+    "ndcg5": 0.36214903822541006
+   }
+  },
+  "kuairec": {
+   "unbiased-test users": 1408.0,
+   "shown per user: mean": 3313.3792613636365,
+   "shown per user: median": 3315.0,
+   "shown per user: p10": 3303.0,
+   "shown per user: p90": 3322.0,
+   "share of users shown 20 or fewer": 0.0,
+   "positives per user: mean": 153.92542613636363,
+   "positives per user: median": 95.0,
+   "share of shown videos that are positive": 0.0464557220874905,
+   "users with a positive and a negative (GAUC)": 1408.0,
+   "full-ranking candidates per user: median": 3326.0,
+   "random": {
+    "Recall@20, full ranking": 0.006013229104028864,
+    "Recall@20, shown videos": 0.006036160464128771,
+    "GAUC, shown videos": 0.5,
+    "NDCG@5, shown videos": 0.04647315813110808
+   },
+   "most_popular": {
+    "gauc": 0.7611868710483111,
+    "ndcg5": 0.6751718434844904
+   }
+  }
  }
 }
